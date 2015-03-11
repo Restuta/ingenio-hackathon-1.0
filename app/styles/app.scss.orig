@@ -8,6 +8,7 @@ input#question {
     width: 80%;
     border: 2px solid salmon;
 }
+<<<<<<< HEAD
 
 .min-header-nav-bar {
   height: 66px;
@@ -26,3 +27,5 @@ input#question {
   background-color: #cce49c;
   height: 3px;
 }
+=======
+>>>>>>> added basic start consumer page mock
