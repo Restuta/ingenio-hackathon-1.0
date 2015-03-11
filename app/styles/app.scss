@@ -4,3 +4,21 @@ input#question {
     width: 80%;
     border: 2px solid salmon;
 }
+
+.min-header-nav-bar {
+  height: 66px;
+
+  .logo {
+    padding-top: 15px;
+  }
+}
+
+.min-header-sub-nav-bar-main {
+  background-color: #88b535;
+  height: 5px;
+}
+
+.min-header-sub-nav-bar-secondary {
+  background-color: #cce49c;
+  height: 3px;
+}
