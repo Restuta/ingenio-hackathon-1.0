@@ -2,8 +2,9 @@ import Ember from 'ember';
 
 export default Ember.View.extend({
   didInsertElement: function() {
-    $('body').on('click', function(e) {
-      console($(e.target));
+    var self = this;
+    this.$('body').on('click', function(e) {
+      console(self.$(e.target));
     });
   }
 });
