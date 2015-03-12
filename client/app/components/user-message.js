@@ -9,10 +9,9 @@ export default Ember.Component.extend({
   }.property(),
 
   actions: {
-    chatWithAdvisor: function() {
-      var self = this;
-      this.sendAction('action', {'advisorId': self.get('advisorId')});   //Trigger the controller action by passing the data
-    }
+    //chatWithAdvisor: function() {
+    //  var self = this;
+    //  this.sendAction('action', {'advisorId': self.get('advisorId')});   //Trigger the controller action by passing the data
+    //}
   }
-  //classNames: []
 });

@@ -24,7 +24,7 @@
     <br/>
     <ul class="media-list advisor-message-list">
       {{#each answer in answersFromAdvisors}}
-        {{user-message action="startChat" message=answer}}
+        {{user-message action="startChat" param=advisorInfo message=answer}}
           <br/>
       {{/each}}
     </ul>

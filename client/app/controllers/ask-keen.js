@@ -33,11 +33,12 @@ export default Ember.ObjectController.extend({
       //At this point lets keep it simple and not worry about big questions and whether to show it in a textarea or not. Just to save some time
       this.set('isQuestionSubmitted',true);
       console.log(this.get('questionAsked'));
-    },
-    startChat: function () {
-      this.transitionToRoute('chat');
-      //TODO: muthu - there will be a selected advisorid coming in through the action from component. pass it as querystring
     }
+    //startChat: function (advisorInfo) {
+    //  console.log(advisorInfo.advisorId);
+    //  //this.transitionToRoute('chat');
+    //  //TODO: muthu - there will be a selected advisorid coming in through the action from component. pass it as querystring
+    //}
   },
 
   /////////// Event handlers for push service events /////////////
