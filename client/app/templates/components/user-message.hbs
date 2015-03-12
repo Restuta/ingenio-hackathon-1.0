@@ -1,15 +1,16 @@
 <li class="advisor-message media">
-            <span class="pull-left">
-                <img {{bind-attr src=profileImageUrl}} class="img-circle media-object advisor-image" alt="Sample Image">
-                <img {{bind-attr src=starRatingImageUrl}} alt="stars" border="0">
-            </span>
+    <span class="pull-left">
+        <img {{bind-attr src=message.profileImageUrl}} class="img-circle media-object advisor-image" alt="Sample Image">
+        <img {{bind-attr src=starRatingImageUrl}} alt="stars" border="0">
+    </span>
+
     <div class="media-body">
-        <h4 class="media-heading">{{advisorName}}   <small><i>Posted on {{postedDate}} (5 seconds back)</i></small></h4>
+        <h4 class="media-heading">{{message.advisorName}}
+            <small><i>Posted on {{message.postedDate}} (8 seconds ago)</i></small>
+        </h4>
         <span class="user-message inline-block">
-          <p>
-              {{messageText}}
-              <button class="btn btn-xs" type="button" {{action 'chatWithAdvisor'}}>Continue with free chat</button>
-          </p>
+              {{message.messageText}}
+            <a href='#' {{action 'chatWithAdvisor'}}>Continue in free chat...</a>
         </span>
     </div>
 </li>

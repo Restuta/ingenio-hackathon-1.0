@@ -7,8 +7,8 @@
           </div>
       </div>
   {{else}}
-      <h2>Get your answers now!</h2>
-      <div class="input-group">
+      <h2>Ask just about anything!</h2>
+      <div class="input-group input-group-lg">
           {{input class="form-control" type="text" maxlength="140" value=questionAsked placeholder="Type in your question..."}}
             <span class="input-group-btn">
               <button class="btn btn-success" type="submit" {{action 'submitQuestion'}}>Ask a <i>bunch</i> of Advisors
@@ -20,11 +20,11 @@
     <br/>
     <br/>
 
-    <h3>Responses from our advisors...</h3>
+    <h3>Responses from our advisors:</h3>
     <br/>
     <ul class="media-list advisor-message-list">
       {{#each message in messageFromAdvisors}}
-        {{user-message action="startChat" profileImageUrl=message.profileImageUrl advisorId=message.advisorId advisorName=message.advisorName postedDate=message.postedDate messageText=message.messageText starRating=message.starRating}}
+        {{user-message action="startChat" message=message}}
           <br/>
       {{/each}}
     </ul>
