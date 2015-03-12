@@ -13,7 +13,7 @@
     <br/>
     <ul class="media-list advisor-message-list">
         {{#each message in messageFromAdvisors}}
-          {{user-message profileImageUrl=message.profileImageUrl advisorName=message.advisorName postedDate=message.postedDate messageText=message.messageText}}
+          {{user-message profileImageUrl=message.profileImageUrl advisorName=message.advisorName postedDate=message.postedDate messageText=message.messageText starRating=message.starRating}}
           <br/>
         {{/each}}
     </ul>
