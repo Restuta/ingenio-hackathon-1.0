@@ -3,27 +3,26 @@ import Ember from 'ember';
 export default Ember.View.extend({
   didInsertElement: function() {
     var self = this;
-    this.$('body').on('click', function(e) {
-      console(self.$(e.target));
-    });
-  }
-});
-
-
-/* we use global click handler to hide any popups we find on the page */
-/*$('body').on('click', function(e) {
-  if ($('.popover').length > 0) {
-    //todo restuta: this is a hack, we cannot afford to do this for all pages where we will need multiple pop-ups
-    $('.editable-list-content').each(function() {
-
-      // e.target is not the element which triggers the popup
-      // the popover doesn't contain the target : Which means that we are not clicking inside the popover
-      if (!$(this).is(e.target)
-        && $(this).has(e.target).length === 0
-        && $('.popover').has(e.target).length === 0
-      ) {
-        $(this).popover('hide');
+    //Some ugly hack here. Who cares this when the end-result gives wow effect! :)
+    //Attaching a global onClick handler on the <Body> level. But post answer only happens on button click
+    $('body').on('click', function(e) {
+      var $clickedElement = $(e.target);
+      if ($clickedElement.prop("tagName").toLowerCase() === 'button' && $clickedElement.hasClass('advisor-reply')){
+        var reply = $clickedElement.prev().val();
+        self.postAnswer({advisorId:1234, answer: reply});
+        self.closeNotification($clickedElement);
       }
     });
+  },
+
+  postAnswer: function (data) {
+    console.log('Posting answer..')
+    console.log(data);
+    //TODO: Muthu-Socket-io call to post answer to the consumer
+  },
+  closeNotification: function ($buttonElement) {
+    $buttonElement.parent().parent().parent().remove();
   }
-});*/
+
+});
+

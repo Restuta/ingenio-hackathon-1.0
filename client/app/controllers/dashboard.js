@@ -18,8 +18,9 @@ export default Ember.Controller.extend({
   },
 
   notificationTemplateFor:{
+    //Important!!: Ensure we dont modify the HTML hierarchy here. The hacky code on application.js has some dependency when dealing with finding and deleting elements
     consumerTyping: "You will probably receive a live question related to topic 'LOVE'",
-    replyConsumerQuestion: "<h4>Question from our user:</h4>$question$<br><textarea rows='4' cols='32'></textarea><button class='advisor-reply'>Reply</button></div>"
+    replyConsumerQuestion: "<h4>Question from our user:</h4>$question$<br><div><textarea rows='4' cols='32'></textarea><button class='advisor-reply'>Reply</button></div>"
   },
 
   //Event handlers
