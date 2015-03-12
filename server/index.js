@@ -1,5 +1,7 @@
-var express = require('express');
-var app = express();
+var app = require('express')();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
 var bodyParser = require('body-parser');
 var argv = require('minimist')(process.argv.slice(2));
 var chalk = require('chalk');
@@ -33,7 +35,7 @@ var log = console.log.bind(console);
 var apiLatency = argv.latency || 0;
 var grouping = argv.grouping || 200;
 
-app.listen(port, function() {
+server.listen(port, function() {
     if (apiLatency > 0) {
         log(chalk.green('Running API Server with artificial latency ')
         +  chalk.grey(apiLatency + 'ms')
@@ -50,3 +52,19 @@ app.listen(port, function() {
     }
 
 });
+
+io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
+});
+
+router.post('/:eventName', function(req, res) {
+    var eventName = req.params.eventName;
+
+    io.emit(eventName, ';D');
+    res.send();
+});
+
+

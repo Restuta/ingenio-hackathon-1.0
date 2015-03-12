@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Socket.io test client</title>
+    <script src="http://localhost:31337/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    
+<script>
+  var socket = io.connect('http://localhost:31337');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+
+  socket.on('test', function(data) {
+    printMessage(data);  
+  });
+
+  var printMessage = function(msg) {
+    document.write('<div class="message">' + msg + '</div>');
+  }
+</script>
+  </body>
+</html>
