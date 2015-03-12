@@ -27,6 +27,12 @@ module.exports = function Router(socketIo) {
             log.event('consumer-started-typing', data);
         });
 
+        //for debugging
+        socket.on('test', function(data) {
+            log.event('test', data);
+            socket.emit('new-answer', {a:8});
+        });
+
         socket.on('disconnect', function() {
             log.info('client disconnected, clients: ' + --totalClients);
         });
@@ -56,6 +62,10 @@ var log = {
 };
 
 var toJson = function(object) {
+    if (!object) {
+        return '';
+    }
+
     var json = util.inspect(object, {
         depth: 3,
         colors: true
@@ -63,5 +73,7 @@ var toJson = function(object) {
 
     if (json != '{}' && json != '' && json != 'undefined' && typeof json != 'undefined') {
         return (chalk.white(json));
+    } else {
+        return '';
     }
 };

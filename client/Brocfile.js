@@ -1,7 +1,7 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app')
-    , pickFiles = require('broccoli-static-compiler');;
+    , pickFiles = require('broccoli-static-compiler');
 
 var app = new EmberApp({
     outputPaths: {
@@ -35,5 +35,10 @@ var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/
     srcDir: '/',
     destDir: '/assets/fonts'
 });
+
+//ember-sockets client
+app.import('vendor/socket.io.js');
+//ember-sockets ember integration
+app.import('bower_components/ember-sockets/dist/ember-sockets.js');
 
 module.exports = app.toTree(bootstrapFonts);

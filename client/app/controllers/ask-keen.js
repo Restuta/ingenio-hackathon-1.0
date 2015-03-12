@@ -1,10 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
-  init: function(){
+  questionAsked: '',
+  answersFromAdvisors: [],
+  respondingAdvisors: [],
+  isQuestionSubmitted: false,
+
+  init: function() {
     //Muthu - just a temporay place to mock the incoming messages from advisors
     this.onReceiveAnswer({
-      id : 1,
+      id: 1,
       profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/22472422-1240184748.jpg",
       advisorId: 101,
       advisorName: "Love Expert Sara",
@@ -14,7 +19,7 @@ export default Ember.ObjectController.extend({
     });
 
     this.onReceiveAnswer({
-      id : 2,
+      id: 2,
       profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg",
       advisorId: 103,
       advisorName: "Psychic Answers By Candy",
@@ -23,16 +28,12 @@ export default Ember.ObjectController.extend({
       starRating: "4"
     });
   },
-  questionAsked: '',
-  answersFromAdvisors : [],
-  respondingAdvisors: [],
-  isQuestionSubmitted: false,
-  actions:{
-    submitQuestion: function () {
-      //When the consumer is done with subitting the question by hitting the "Ask the advisors" button, we disable question box
-      //At this point lets keep it simple and not worry about big questions and whether to show it in a textarea or not. Just to save some time
-      this.set('isQuestionSubmitted',true);
-      console.log(this.get('questionAsked'));
+
+  actions: {
+    submitQuestion: function() {
+      //todo retuta: show email box
+      //this.set('isQuestionSubmitted', true);
+      this.socket.emit('test', {question: this.get('questionAsked')});
     }
     //startChat: function (advisorInfo) {
     //  console.log(advisorInfo.advisorId);
@@ -41,21 +42,33 @@ export default Ember.ObjectController.extend({
     //}
   },
 
+  sockets: {
+    'new-answer': function(data) {
+        console.log(data);
+    },
+    connect: function() {
+      console.log('Sockets connected...');
+    },
+    disconnect: function() {
+      console.log('Sockets disconnected...');
+    }
+  },
+
   /////////// Event handlers for push service events /////////////
   /*This method will  be called when ever we receive an incoming message through push notifier*/
-  onReceiveAnswer: function(message){
+  onReceiveAnswer: function(message) {
     console.log(message);
     this.get('answersFromAdvisors').pushObject(message);
   },
 
-  whenAdvisorTypes: function(advisorName){
+  whenAdvisorTypes: function(advisorName) {
     console.log('Advisor ' + advisorName + ' typing');
     //Add to a list of responding advisors
     this.get('respondingAdvisors').pushObject(advisorName);
 
   },
 
-  whenAdvisorStopsTyping: function(advisorName){
+  whenAdvisorStopsTyping: function(advisorName) {
     console.log('Advisor ' + advisorName + 'stopped typing');
     //Remove from the list respondingAdvisors
   }
