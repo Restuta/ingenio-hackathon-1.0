@@ -4,18 +4,18 @@
 workspace.xml
 
 # compiled output
-/dist
-/tmp
+client/dist
+client/tmp
 
 # dependencies
-/node_modules
-/bower_components
+node_modules
+bower_components
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
+.sass-cache
+connect.lock
+client/coverage/*
+client/libpeerconnection.log
 npm-debug.log
 testem.log
 .idea/.name
