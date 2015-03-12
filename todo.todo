@@ -1,0 +1,28 @@
+Day#1
+1) Initial infra for emberjs with bootstrap
+2) HTML mock for,
+    a) Consumer page /ask-keen
+    b) Advisor page /dashboard?advisorid={id}
+    c) Chat page  /chat?advisorid={id}&consumerid={id}
+
+3) Server & client push notification component:
+    Socketio server & client samples with command line push messages
+
+4) Client notification popup widgets (which should also support form to be part of it)
+    https://github.com/sciactive/pnotify,
+    https://github.com/needim/noty
+    http://notifyjs.com/,
+    https://github.com/ehynds/jquery-notify
+
+
+
+Day#2
+
+
+
+
+
+
+
+Issues:
+=========
