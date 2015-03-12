@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('ask-keen');
   this.route('dashboard');
+  this.route('chat');
 });
 
 export default Router;

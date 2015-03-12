@@ -13,11 +13,11 @@
     <br/>
     <ul class="media-list advisor-message-list">
         {{#each message in messageFromAdvisors}}
-          {{user-message profileImageUrl=message.profileImageUrl advisorName=message.advisorName postedDate=message.postedDate messageText=message.messageText starRating=message.starRating}}
+          {{user-message action="startChat" profileImageUrl=message.profileImageUrl advisorId=message.advisorId advisorName=message.advisorName postedDate=message.postedDate messageText=message.messageText starRating=message.starRating}}
           <br/>
         {{/each}}
     </ul>
 </div>
 
 
-<!-- HTML content for emailid-->
+<!-- TODO: HTML content for emailid-->
