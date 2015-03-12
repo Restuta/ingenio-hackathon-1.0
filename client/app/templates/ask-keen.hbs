@@ -23,8 +23,8 @@
     <h3>Responses from our advisors:</h3>
     <br/>
     <ul class="media-list advisor-message-list">
-      {{#each message in messageFromAdvisors}}
-        {{user-message action="startChat" message=message}}
+      {{#each answer in answersFromAdvisors}}
+        {{user-message action="startChat" message=answer}}
           <br/>
       {{/each}}
     </ul>
