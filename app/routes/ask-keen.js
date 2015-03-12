@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function(){
-    return {
+    return Ember.Object.create({
       questionAsked:'default question',
       messageFromAdvisors : [
         {
@@ -24,6 +24,6 @@ export default Ember.Route.extend({
           starRating: "3"
         }
       ]
-    };
+    });
   }
 });

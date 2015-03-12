@@ -1,14 +1,15 @@
 <div class="col-sm-12">
-    <h2>Get your answers now!</h2>
   {{#if isQuestionSubmitted}}
+      <h2>Question from you</h2>
       <div class="panel panel-default">
           <div class="panel-body">
             {{questionAsked}}
           </div>
       </div>
   {{else}}
+      <h2>Get your answers now!</h2>
       <div class="input-group">
-          <input type="text" class="form-control" placeholder="Type in your question..." {{bind-attr value=questionAsked}}>
+          {{input class="form-control" type="text" maxlength="140" value=questionAsked placeholder="Type in your question..."}}
             <span class="input-group-btn">
               <button class="btn btn-success" type="submit" {{action 'submitQuestion'}}>Ask a <i>bunch</i> of Advisors
               </button>
