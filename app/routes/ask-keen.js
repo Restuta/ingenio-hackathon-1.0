@@ -21,6 +21,6 @@ export default Ember.Route.extend({
           starRating: "3"
         }
       ]
-    }
+    };
   }
 });
