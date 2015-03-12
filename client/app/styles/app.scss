@@ -1,9 +1,6 @@
-/*Manifest file, used to import all SASS dependencies */
-
 .main-content {
-    margin-top: 10%;
+  margin-top: 10%;
 }
-
 
 .min-header-nav-bar {
   height: 66px;
@@ -23,22 +20,21 @@
   height: 3px;
 }
 
-
 /* Advisor message styles */
-.advisor-image{
+.advisor-image {
   width: 75px;
   height: 75px;
 }
-.user-message{
+
+.user-message {
 
 }
 
-
 /*dash-board styles*/
-.advisor-dashbord-bg{
+.advisor-dashboard-bg {
   background-image: url('/images/advisor-dashboard.png');
-  width:1200px;
-  height:900px;
+  width: 1200px;
+  height: 900px;
   background-repeat: no-repeat;
 }
 
