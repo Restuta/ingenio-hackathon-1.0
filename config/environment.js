@@ -35,7 +35,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.locationType = 'hash'; //to support urls with '#' since history API requires server-side setup
+    //ENV.locationType = 'hash'; //to support urls with '#' since history API requires server-side setup
   }
 
   if (environment === 'test') {
