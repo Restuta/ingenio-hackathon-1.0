@@ -1,5 +1,5 @@
 var chalk = require('chalk');
-var util = require('util') //node utils
+var util = require('util'); //node utils
 
 var lastApiCallDate = null;
 var options = {
@@ -15,7 +15,7 @@ var logJson = function(object) {
     }).trim();
 
     if (json != '{}' && json != '' && json != 'undefined' && typeof json != 'undefined') {
-        process.stdout.write(chalk.white(json) + '\n');    
+        process.stdout.write(chalk.white(json) + '\n');
     }
 };
 
@@ -41,7 +41,7 @@ module.exports = function(request, response, next){
 
         var duration = now - start;
 
-        /*if no calls were made during last 2000ms print separator, 
+        /*if no calls were made during last 2000ms print separator,
             so it's easier to visually distinguish calls that were made at similar times */
 
         var colorStatusByType = function(status) {
@@ -49,22 +49,22 @@ module.exports = function(request, response, next){
 
             if (status >= 300 && status <= 499) {
                 coloredStatus = chalk.yellow(status);
-            } 
-            
+            }
+
             if (status >= 500) {
                 coloredStatus = chalk.red(status);
             }
 
             return coloredStatus;
-        }
+        };
 
         stream.write(
-            (timePassedFromLastCall > options.groupRequestsMadeInBetween  
+            (timePassedFromLastCall > options.groupRequestsMadeInBetween
                 ? '\n'
                 : '')
-            + chalk.cyan(method) 
+            + chalk.cyan(method)
             + ' ' + colorStatusByType(status)
-            + ' ' + chalk.grey(url) 
+            + ' ' + chalk.grey(url)
             + ' ' + chalk.yellow(duration + 'ms')
             + ' ' + chalk.grey(timePassedFromLastCall + 'ms')
             + '\n');
@@ -72,15 +72,15 @@ module.exports = function(request, response, next){
         lastApiCallDate = +new Date();
 
         if (options.logBody && !isEmpty(request.body)) {
-            logJson(request.body);    
+            logJson(request.body);
         }
-    })
+    });
 
     setTimeout(function() {
         next();
     }, options.apiLatency);
-    
-}
+
+};
 
 module.exports.setOptions = function(configOptions) {
     options = configOptions;
@@ -90,13 +90,13 @@ module.exports.setOptions = function(configOptions) {
     if (!options.groupRequestsMadeInBetween) {
         var defaultGroupingTime = 200;
 
-        options.groupRequestsMadeInBetween = options.apiLatency > 0 
+        options.groupRequestsMadeInBetween = options.apiLatency > 0
             ? options.apiLatency + defaultGroupingTime
-            : defaultGroupingTime; 
+            : defaultGroupingTime;
     }
 
     if (configOptions.logBody && configOptions.logBody === true) {
         options.logBody = true;
     }
-    
+
 }

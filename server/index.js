@@ -13,7 +13,7 @@ logger.setOptions({
     logBody: argv.logBody
 });
 
-var router = require('./hack-router');
+var router = require('./hack-router')(io);
 
 var port = 31337;
 
@@ -53,18 +53,6 @@ server.listen(port, function() {
 
 });
 
-io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-        console.log(data);
-    });
-});
 
-router.post('/:eventName', function(req, res) {
-    var eventName = req.params.eventName;
-
-    io.emit(eventName, ';D');
-    res.send();
-});
 
 
