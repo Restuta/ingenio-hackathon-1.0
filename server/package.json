@@ -1,0 +1,19 @@
+{
+  "name": "hackathon-server",
+  "version": "0.0.1",
+  "description": "socket.io server for Ingenio hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Restuta/ingenio-hackathon-1.0.git"
+  },
+  "author": "Anton Vynogradenko <restuta8@gmail.com> (http://restuta.me)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Restuta/ingenio-hackathon-1.0/issues"
+  },
+  "homepage": "https://github.com/Restuta/ingenio-hackathon-1.0"
+}
