@@ -66,9 +66,6 @@ module.exports = function Router(socketIo) {
 
             log.event('new-advisor-answer(final-data)', data);
             socket.broadcast.emit('new-advisor-answer', data);
-        });
-
-
 
         socket.on('disconnect', function() {
             log.info('client disconnected, clients: ' + --totalClients);
@@ -144,7 +141,7 @@ var advisorList = [{
     postedDate: "March 13, 2015",
     starRating: "4",
     pricePerMinute: "2.99"
-},{
+}, {
     advisorId: 105,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg",
     advisorName: "Psychic Answers By Candy",
