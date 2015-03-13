@@ -7,9 +7,9 @@ export default Ember.Controller.extend({
   questionFormNotification: Notify.property(),
   canReply: false,
   preQuestionMessage: 'Somebody is typing a question...',
-  queryParams: ['advisorid'],
-  advisorid: null,  //Need to have this property to match the case of querystring :(
-
+  queryParams: ['advisorId'],
+  advisorId: null,  //Need to have this property to match the case of querystring :(
+  answer: '',
 
   actions: {
     checkItOut: function() {
@@ -19,6 +19,11 @@ export default Ember.Controller.extend({
     },
     sendReply: function() {
       this.questionPopup.set('visible', false);
+      
+      this.socket.emit('new-advisor-answer', {
+        advisorId: this.get('advisorId'),
+        answer: this.get('answer')
+      });
     },
     preQuestionFormClosed: function() {
 

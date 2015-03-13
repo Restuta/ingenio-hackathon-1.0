@@ -12,7 +12,7 @@
 {{#just-notify source=questionFormNotification class="position-center" close="questionFormClosed"}}
     <h4>Question from our user: {{questionText}}...</h4>
     <div>
-        <textarea rows='4' cols='32'></textarea>
+        {{textarea rows="4" cols="32" value=answer}}
 
         <div class="text-right">
             <button {{bind-attr class=":btn :btn-primary canReply:enabled:disabled"}} {{action "sendReply"}}>Reply</button>

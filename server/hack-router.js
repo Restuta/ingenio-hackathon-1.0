@@ -27,7 +27,9 @@ module.exports = function Router(socketIo) {
                 {name: 'consumer-started-typing', broadcast: true},
                 {name: 'consumer-pressed-key', broadcast: true}
             ],
-            advisor: []
+            advisor: [
+                {name: 'new-advisor-answer', broadcast: true}
+            ]
         };
 
         //logging and broadcasting above events
@@ -56,11 +58,12 @@ module.exports = function Router(socketIo) {
             socket.broadcast.emit('new-advisor-answer', data);
         });
 
+           
 
             socket.on('disconnect', function() {
                 log.info('client disconnected, clients: ' + --totalClients);
             });
-    });
+        });
 
     router.post('/:eventName', function(req, res) {
         var eventName = req.params.eventName;
