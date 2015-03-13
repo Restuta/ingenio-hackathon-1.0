@@ -10,7 +10,7 @@
         </h4>
         <span class="user-message inline-block">
             {{message.messageText}}
-            {{#link-to 'chat' (query-params aid=message.advisorId)}}Continue in free chat...{{/link-to}}
+            {{#link-to 'chat' (query-params advisorid=message.advisorId userid=userId)}}Continue in free chat...{{/link-to}}
         </span>
     </div>
 </li>

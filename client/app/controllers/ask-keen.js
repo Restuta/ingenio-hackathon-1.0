@@ -1,6 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+  userId: function(){
+    var bound = {min: 100,max: 200};
+
+    return Math.floor(Math.random() * (bound.max - bound.min + 1)) + bound.min
+  }.property(),
   questionAsked: '',
   answersFromAdvisors: [],
   respondingAdvisors: [],
