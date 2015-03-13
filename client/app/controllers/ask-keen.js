@@ -33,18 +33,23 @@ export default Ember.ObjectController.extend({
     submitQuestion: function() {
       //todo retuta: show email box
       //this.set('isQuestionSubmitted', true);
-      this.socket.emit('test', {question: this.get('questionAsked')});
+      this.socket.emit('post-new-question', {userId: 1234, question: this.get('questionAsked')});
     }
-    //startChat: function (advisorInfo) {
-    //  console.log(advisorInfo.advisorId);
-    //  //this.transitionToRoute('chat');
-    //  //TODO: muthu - there will be a selected advisorid coming in through the action from component. pass it as querystring
-    //}
   },
 
   sockets: {
-    'new-answer': function(data) {
+    'new-advisor-answer': function(data) {
         console.log(data);
+        //Just adding new advisor when ever this even is handled
+        this.get('answersFromAdvisors').pushObject({
+          id: 2,
+          profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg",
+          advisorId: 103,
+          advisorName: "Psychic Answers By Candy",
+          postedDate: "March 10, 2015",
+          messageText: "Can't say for sure, but I feel the presence of somebody important. It might be somebody from your past or nearest future. I need a little more info to tell for sure.",
+          starRating: "4"
+        });
     },
     connect: function() {
       console.log('Sockets connected...');

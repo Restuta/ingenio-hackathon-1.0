@@ -42,13 +42,18 @@ Sample Data & Event-names:
 Consumer-side
 -------------
     1) SEND:
-              event-name: question-posted
-              data: {uuid: 1234, question: 'Question from user'}
+              event-name: post-new-question
+              data: {userId: 1234, question: 'Question from user'}
     2) RECEIVE:
-              event-name: advisor-answer
+              event-name: new-advisor-answer
               data: {advisorId: 101, answer: 'Sample answer from advisor'}   //All the other data which are required by the UI to construct the message-component
 
 Advisor-side
 ------------
+
     1) SEND: When he/she is done with replying the question
+
+    2) RECEIVE:
+              event-name: new-question-posted
+              data: {userId: 1234, question: 'Question from user'}
 

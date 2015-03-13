@@ -33,6 +33,12 @@ module.exports = function Router(socketIo) {
             socket.emit('new-answer', {a:8});
         });
 
+        socket.on('post-new-question', function(data) {
+            log.event('post-new-question', data);
+            //massage the data before emitting if required
+            socket.emit('new-question-posted', data);
+        });
+
         socket.on('disconnect', function() {
             log.info('client disconnected, clients: ' + --totalClients);
         });
