@@ -28,8 +28,7 @@
 
     $('#consumer-started-typing').click(function() {
         console.log('clicked');
-        debugger;
-        io.sockets.emit('broadcast', {source: 'click'});
+        io.emit('new-question-posted', {});
     });
   </script>
   </body>

@@ -16,8 +16,9 @@
       <h2>Ask just about anything!</h2>
 
       <div class="input-group input-group-lg">
-        {{input class="form-control" type="text" maxlength="140" value=questionAsked placeholder="Type in your question..."}}
-          <span class="input-group-btn">
+          {{input-with-on-change class="form-control" type="text" maxlength="140" value=questionAsked
+          placeholder="Type in your question..." onInputChange="onInputChange"}}
+            <span class="input-group-btn">
               <button class="btn btn-success" type="submit" {{action 'submitQuestion'}}>Ask a <i>bunch</i> of Advisors
               </button>
             </span>

@@ -23,6 +23,7 @@ export default Ember.Controller.extend({
       var htmlContent = this.notificationTemplateFor.replyConsumerQuestion.replace('$question$', data.question);
       this.notify.success({raw: htmlContent, closeAfter: null}, {closeAfter: null});
     }
+
   },
 
   notificationTemplateFor: {

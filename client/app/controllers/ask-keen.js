@@ -44,6 +44,9 @@ export default Ember.ObjectController.extend({
       //todo retuta: show email box
       //this.set('isQuestionSubmitted', true);
       this.socket.emit('new-question-posted', {userId: 1234, question: this.get('questionAsked')});
+    },
+    onInputChange: function(sender, value) {
+      console.log(value);
     }
   },
 

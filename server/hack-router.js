@@ -37,6 +37,16 @@ module.exports = function Router(socketIo) {
             socket.broadcast.emit('new-question-posted', data);
         });
 
+        socket.on('consumer-started-typing', function(data) {
+            log.event('consumer-started-typing', data);
+            socket.broadcast.emit('consumer-started-typing', data);
+        });
+
+        socket.on('consumer-pressed-key', function(data) {
+            log.event('consumer-pressed-key', data);
+            socket.broadcast.emit('consumer-pressed-key', data);
+        });
+
         socket.on('disconnect', function() {
             log.info('client disconnected, clients: ' + --totalClients);
         });
