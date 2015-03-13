@@ -1,4 +1,15 @@
+{{#just-notify}}
+    <h3>Looks like somebody is typing a question...</h3>
+{{/just-notify}}
 
+
+{{#just-notify}}
+    <h4>Question from our user: {{questionText}}</h4>
+    <div>
+        <textarea rows='4' cols='32'></textarea>
+        <button class='btn btn-sm advisor-reply'>Reply</button>
+    </div>
+{{/just-notify}}
 <div class="advisor-dashboard-bg">
     <button class="btn btn-success"  {{action 'notify'}}>Notify Test</button>
     <button class="btn btn-success"  {{action 'sendAnswer' testAnswers.answer1}}>Send Answer1</button>
