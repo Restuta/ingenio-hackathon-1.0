@@ -1,13 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+  needs: ['application'],
   queryParams: ['advisorid'],
   advisorid: null,  //Need to have this property to match the case of querystring which is bad :(
   advisorId: function(){
     //This is the same as 'advisor' property , but in a camelCase form
     return this.get('advisorid');
   },
-  needs: ['application'],
   init: function () {
     //Initialize push service object here?
   },
@@ -20,7 +20,17 @@ export default Ember.ObjectController.extend({
       self.onQuestionArrives({question: 'What does my future looks like. I\'ve been going through a bad year that am totally lost. I need someone to help me here'});
       console.log(this.get('controllers.application.currentRouteName'));
       console.log(this.get('advisorId'));
+    },
+    //TODO: Muthu test method to send messages to ask-keen page
+    sendAnswer: function(advisorAnswer){
+      this.socket.emit('new-advisor-answer', {advisorId: this.get('advisorId'), answer: advisorAnswer});
     }
+  },
+
+  //TODO: Muthu test answers to ask-keen page
+  testAnswers: {
+      answer1: "Excellent feature! I love it. We are defintiely going to rock it on this friday!. Excellent feature! I love it. We are defintiely going to rock it on this friday!Excellent feature! I love it. We are defintiely going to rock it on this friday!",
+      answer2: "Can't say for sure, but I feel the presence of somebody important. It might be somebody from your past or nearest future. I need a little more info to tell for sure"
   },
 
   notificationTemplateFor:{
