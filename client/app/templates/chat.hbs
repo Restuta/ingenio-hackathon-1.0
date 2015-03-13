@@ -1,1 +1,81 @@
-{{outlet}}
+<br/><br/><br/><br/>
+<div class="col-md-12">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>You are having a free chat with advisor <b><i>{{model.advisorName}}</i></b></h4>
+        </div>
+        <div class="panel-body">
+            <ul class="media-list">
+
+                <li class="media">
+                    <div class="media-body">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="img-circle media-object advisor-image" src="/images/avatar.jpg">
+                            </a>
+                            <div class="media-body">
+                                {{model.question}}
+                                <br>
+                                <small class="text-muted">You | 13th March at 12:30pm</small>
+                                <hr>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+                <li class="media">
+
+                    <div class="media-body">
+
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img {{bind-attr src=model.profileImageUrl}} class="img-circle media-object advisor-image"
+                                                                             alt="Sample Image">
+                            </a>
+
+                            <div class="media-body">
+                              {{model.answer}}
+                                <br>
+                                <small class="text-muted">{{model.advisorName}} | 13th March at 12:31pm</small>
+                                <hr>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Enter Message">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="button">SEND</button>
+                                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="advisor-message media">
+            <span class="pull-right text-center">
+                <img {{bind-attr src=model.profileImageUrl}} class="img-circle media-object advisor-image"
+                                                             alt="Sample Image">
+                <div>{{model.advisorName}}</div>
+                <img {{bind-attr src=starRatingImageUrl}} alt="stars" border="0">
+                <div class="price-per-minute">${{model.pricePerMinute}}</div>
+            </span>
+
+            <div class="media-body">
+                <h4 class="media-heading">{{model.question}}</h4>
+                <span class="user-message inline-block">
+                  {{model.answer}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->

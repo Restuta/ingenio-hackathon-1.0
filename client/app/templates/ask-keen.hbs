@@ -36,7 +36,7 @@
     <br/>
     <ul class="media-list advisor-message-list">
       {{#each answer in answersFromAdvisors}}
-        {{user-message message=answer userId=userId}}
+        {{user-message message=answer userId=userId question=questionAsked}}
           <br/>
       {{/each}}
     </ul>

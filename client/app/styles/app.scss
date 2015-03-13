@@ -95,3 +95,12 @@ html, body {
   z-index: 10;
 //  display: none;
 }
+
+.panel-info{
+  border-color: $green;
+}
+
+.panel-info > .panel-heading {
+  background-color:  $green;
+  border-color: $green;
+}
