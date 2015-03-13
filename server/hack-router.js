@@ -48,20 +48,14 @@ module.exports = function Router(socketIo) {
         });
 
         socket.on('new-advisor-answer', function(data) {
-            log.event('new-advisor-answer', data);
+            log.event('new-advisor-answer(incoming)', data);
 
             attachAdvisorInfo(data);
-            log.event('new-advisor-answer(merged-data)', data);
 
-            //TODO - Muthu/Anton , the above find method is still not working need to fix it
-            data.profileImageUrl = '/images/anton-advisor.jpg';
-            data.advisorName = "Psychic Answers By Candy";
-            data.postedDate = "March 10, 2015";
-            data.starRating = "4";
-            data.pricePerMinute = "1.99";
-
-            log.event('new-advisor-answer(final-data)', data);
+            log.event('new-advisor-answer(outgoing)', data);
             socket.broadcast.emit('new-advisor-answer', data);
+        });
+
 
             socket.on('disconnect', function() {
                 log.info('client disconnected, clients: ' + --totalClients);
@@ -148,7 +142,8 @@ var advisorList = [{
 
 var attachAdvisorInfo = function(data) {
     //Ensure the incoming data has the key 'advisorId'
-    var filteredAdvisor = _.find(advisorList, {'advisorId': data.advisorId});
+    var advisorId = _.parseInt(data.advisorId);
+    var filteredAdvisor = _.find(advisorList, {'advisorId': advisorId});
     _.merge(data, filteredAdvisor);
 };
 
