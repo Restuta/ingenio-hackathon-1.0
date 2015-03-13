@@ -49,10 +49,9 @@ module.exports = function Router(socketIo) {
 
         socket.on('new-advisor-answer', function(data) {
             log.event('new-advisor-answer', data);
-            //TODO:Add some advisor info matchign the advisorid to the data which is required to be shown on the home page
 
-            var advisorInfo = _.find(advisorList, {'id': 102});
-            log.info('selectedAdvisor:', advisorInfo);
+            attachAdvisorInfo(data);
+            log.event('new-advisor-answer(merged-data)', data);
 
             //TODO - Muthu/Anton , the above find method is still not working need to fix it
             data.profileImageUrl = '/images/anton-advisor.jpg';
@@ -61,7 +60,7 @@ module.exports = function Router(socketIo) {
             data.starRating= "4";
             data.pricePerMinute= "1.99";
 
-            //log.event('new-advisor-answer(modified-data)', data);
+            log.event('new-advisor-answer(final-data)', data);
             socket.broadcast.emit('new-advisor-answer', data);
         });
 
@@ -149,6 +148,12 @@ var advisorList = [{
     starRating: "3",
     pricePerMinute: "3.99"
 }];
+
+var attachAdvisorInfo= function(data){
+    //Ensure the incoming data has the key 'advisorId'
+    var filteredAdvisor = _.find(advisorList, {'advisorId': data.advisorId});
+    _.merge(data, filteredAdvisor);
+}
 
 
 //Keeping it simple by having questions at  user level and its corresponding answers to be used on chat page. In ideal situation we will be having questionid generated and handled (but not for now)
