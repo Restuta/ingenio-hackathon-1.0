@@ -60,7 +60,6 @@ module.exports = function Router(socketIo) {
             socket.on('disconnect', function() {
                 log.info('client disconnected, clients: ' + --totalClients);
             });
-        });
     });
 
     router.post('/:eventName', function(req, res) {
