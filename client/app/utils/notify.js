@@ -11,7 +11,6 @@ var Notify = Ember.Object.extend({
   error: aliasToShow('error'),
 
   init: function() {
-    console.log('notify.js init');
     this.pending = [];
   },
 

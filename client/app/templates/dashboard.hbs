@@ -1,18 +1,21 @@
-{{#just-notify}}
-    <h3>Looks like somebody is typing a question...</h3>
+{{#just-notify source=preQuestionNotification}}
+    <h4>Somebody is typing a question...</h4>
+    <div class="text-center">
+        <button class="btn btn-primary" {{action "checkItOut"}}>Check it out</button>
+    </div>
 {{/just-notify}}
 
 
-{{#just-notify}}
-    <h4>Question from our user: {{questionText}}</h4>
+{{#just-notify source=questionFormNotification class="position-center"}}
+    <h4>Question from our user: {{questionText}}...</h4>
     <div>
         <textarea rows='4' cols='32'></textarea>
-        <button class='btn btn-sm advisor-reply'>Reply</button>
+        <div class="text-right">
+            <button {{bind-attr class=":btn :btn-primary canReply:enabled:disabled"}} {{action "sendReply"}}>Reply</button>
+        </div>
     </div>
 {{/just-notify}}
 <div class="advisor-dashboard-bg">
-    <button class="btn btn-success"  {{action 'notify'}}>Notify Test</button>
-    <button class="btn btn-success"  {{action 'sendAnswer' testAnswers.answer1}}>Send Answer1</button>
-    <button class="btn btn-success"  {{action 'sendAnswer' testAnswers.answer2}}>Send Answer2</button>
+    <button class="btn btn-success"  {{action "notify"}}>Notify Test</button>
 </div>
 

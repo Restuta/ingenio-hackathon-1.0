@@ -1,45 +1,45 @@
 import Ember from 'ember';
 import Notify from '../utils/notify';
 
-export default Ember.ObjectController.extend({
-  needs: ['application'],
+export default Ember.Controller.extend({
+  //defining
+  preQuestionNotification: Notify.property(),
+  questionFormNotification: Notify.property(),
+  canReply: false,
   queryParams: ['advisorid'],
   advisorid: null,  //Need to have this property to match the case of querystring :(
-  init: function() {
-    //Initialize push service object here?
+
+  actions: {
+    notify: function() {
+      this.get('preQuestionNotification').success({closeAfter: null});
+    },
+    checkItOut: function() {
+      this.questionPopup = this.get('questionFormNotification').success({closeAfter: null});
+      this.preQuestionPopup.set('visible', false);
   },
 
   actions: {
     notify: function() {
       var self = this;
-      //Test calls to be removed later since we have event handlers way down
-      this.notify.success({raw: self.notificationTemplateFor.consumerTyping, closeAfter: null});
-      self.onQuestionArrives({question: 'What does my future looks like. I\'ve been going through a bad year that am totally lost. I need someone to help me here'});
       Notify.success({closeAfter: null});
-      //Test calls to be removed later since we have event handlers way down
-      this.notify.success({raw: self.notificationTemplateFor.consumerTyping, closeAfter: null});
-      self.onQuestionArrives({question: 'What does my future looks like. I\'ve been going through a bad year that am totally lost. I need someone to help me here'});
-      console.log(this.get('controllers.application.currentRouteName'));
-      console.log(this.get('advisorId'));
-    },
-    //TODO: Muthu test method to send messages to ask-keen page
-    sendAnswer: function(advisorAnswer) {
-      this.socket.emit('new-advisor-answer', {advisorId: this.get('advisorid'), answer: advisorAnswer});
-    }
+    sendReply: function() {
+      this.questionPopup.set('visible', false);
+      this.questionPopup.set('visible', true);
+	}
   },
 
   sockets: {
     'consumer-started-typing': function() {
-      Notify.success({closeAfter: null});
+      this.preQuestionPopup = this.get('preQuestionNotification').success({closeAfter: null});
     },
 
     'new-question-posted': function(data) {
-      console.log('new question posted');
-      Notify.success({closeAfter: null});
+      this.set('canReply', true);
     },
 
     'consumer-pressed-key': function(data) {
-        this.set('questionText', data.value);
+      //this.get('questionFormNotification').success({closeAfter: null});
+      this.set('questionText', data.value);
     }
   },
   //TODO: Muthu test answers to ask-keen page

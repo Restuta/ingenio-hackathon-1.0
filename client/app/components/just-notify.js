@@ -47,8 +47,7 @@ export default Ember.Component.extend({
     this.messages.pushObject(message);
     return message;
   }
-})
-  ;
+});
 
 export var MessageView = Ember.View.extend({
   message: null,

@@ -1,3 +1,5 @@
+$green: #18BC9C;
+
 .main-content {
   /*margin-top: 10%;*/
 }
@@ -48,15 +50,22 @@
   background-repeat: no-repeat;
 }
 
-
 /*Quick fix for the background of notification boxes. Somehow the styles of ember-notify is not getting included. Doing this for time saving */
 .alert-box.success {
-  background-color: #43AC6A;
+  background-color: $green;
   border-color: #3a945b;
   color: #FFF;
 }
 
 .alert-box.success input, button, textarea {
   color: #000;
+}
+
+.position-center {
+  position: absolute;;
+  top: 30%;
+  left: 40%;
+  right: 0;
+  bottom: 0;
 }
 
