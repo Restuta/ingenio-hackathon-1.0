@@ -22,8 +22,26 @@ module.exports = function Router(socketIo) {
 
         socket.emit('connected-to-server', {msg: 'connected to server'});
 
-        socket.on('consumer-started-typing', function(data) {
-            log.event('consumer-started-typing', data);
+
+        var events = {
+            consumer: [
+                {name: 'new-question-posted', broadcast: true },
+                {name: 'consumer-started-typing', broadcast: true },
+                {name: 'consumer-pressed-key', broadcast: true }
+            ],
+            advisor: [
+
+            ]
+        };
+
+        _.each(events.consumer, function(event){
+            socket.on(event.name, function(data){
+                log.event(event.name, data);
+
+                if (event.broadcast === true) {
+                    socket.broadcast.emit(event.name, data);
+                }
+            });
         });
 
         //for debugging
@@ -32,20 +50,6 @@ module.exports = function Router(socketIo) {
             socket.emit('new-answer', {a:8});
         });
 
-        socket.on('new-question-posted', function(data) {
-            log.event('new-question-posted', data);
-            socket.broadcast.emit('new-question-posted', data);
-        });
-
-        socket.on('consumer-started-typing', function(data) {
-            log.event('consumer-started-typing', data);
-            socket.broadcast.emit('consumer-started-typing', data);
-        });
-
-        socket.on('consumer-pressed-key', function(data) {
-            log.event('consumer-pressed-key', data);
-            socket.broadcast.emit('consumer-pressed-key', data);
-        });
 
         socket.on('new-advisor-answer', function(data) {
             log.event('new-advisor-answer', data);

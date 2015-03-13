@@ -50,6 +50,10 @@ export default Ember.ObjectController.extend({
     },
     onInputChange: function(sender, value) {
       this.socket.emit('consumer-pressed-key', {value: value});
+    },
+    startedTyping: function() {
+      console.log('consumer-started-typing');
+      this.socket.emit('consumer-started-typing', {});
     }
   },
 
