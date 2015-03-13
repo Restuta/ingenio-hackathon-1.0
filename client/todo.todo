@@ -22,9 +22,33 @@ Day #2
 
 
 Bonus:
+- Using some NLP, try to find the type of question posted and when informing advisor about the likeliness of a question arriving,
+  mention about the type of question he might expect
 - add realtime Hook integration with Slack to send user quesions, just to have fun during demo and show the power of mordern web:
 	it's very easy https://ingenio.slack.com/services/new/incoming-webhook
 - add iPhone notifications for advisors
 
 Issues:
 =========
+
+
+
+
+
+Sample Data & Event-names:
+==========================
+
+
+Consumer-side
+-------------
+    1) SEND:
+              event-name: question-posted
+              data: {uuid: 1234, question: 'Question from user'}
+    2) RECEIVE:
+              event-name: advisor-answer
+              data: {advisorId: 101, answer: 'Sample answer from advisor'}   //All the other data which are required by the UI to construct the message-component
+
+Advisor-side
+------------
+    1) SEND: When he/she is done with replying the question
+
