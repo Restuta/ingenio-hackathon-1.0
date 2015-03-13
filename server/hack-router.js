@@ -157,7 +157,7 @@ var attachAdvisorInfo= function(data){
     //Ensure the incoming data has the key 'advisorId'
     var filteredAdvisor = _.find(advisorList, {'advisorId': data.advisorId});
     _.merge(data, filteredAdvisor);
-}
+};
 
 
 //Keeping it simple by having questions at  user level and its corresponding answers to be used on chat page. In ideal situation we will be having questionid generated and handled (but not for now)

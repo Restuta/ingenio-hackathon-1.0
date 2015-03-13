@@ -18,11 +18,10 @@ export default Ember.ObjectController.extend({
       console.log(this.get('advisorId'));
     },
     //TODO: Muthu test method to send messages to ask-keen page
-    sendAnswer: function(advisorAnswer){
+    sendAnswer: function(advisorAnswer) {
       this.socket.emit('new-advisor-answer', {advisorId: this.get('advisorid'), answer: advisorAnswer});
     }
   },
-
 
   sockets: {
     'new-question-posted': function(data) {
@@ -32,13 +31,14 @@ export default Ember.ObjectController.extend({
     },
 
     'consumer-pressed-key': function(data) {
-        this.set('questionText', data.value);
+      this.set('questionText', data.value);
     }
+  },
 
   //TODO: Muthu test answers to ask-keen page
   testAnswers: {
-      answer1: "Excellent feature! I love it. We are defintiely going to rock it on this friday!. Excellent feature! I love it. We are defintiely going to rock it on this friday!Excellent feature! I love it. We are defintiely going to rock it on this friday!",
-      answer2: "Can't say for sure, but I feel the presence of somebody important. It might be somebody from your past or nearest future. I need a little more info to tell for sure"
+    answer1: "Excellent feature! I love it. We are defintiely going to rock it on this friday!. Excellent feature! I love it. We are defintiely going to rock it on this friday!Excellent feature! I love it. We are defintiely going to rock it on this friday!",
+    answer2: "Can't say for sure, but I feel the presence of somebody important. It might be somebody from your past or nearest future. I need a little more info to tell for sure"
   },
 
   notificationTemplateFor: {
@@ -51,8 +51,8 @@ export default Ember.ObjectController.extend({
   onQuestionArrives: function(data) {
     //Show the form with reply only for dashboard page
     if (this.get('controllers.application.currentRouteName') === 'dashboard') {
-    var htmlContent = this.notificationTemplateFor.replyConsumerQuestion.replace('$question$', data.question);
-    this.notify.success({raw: htmlContent, closeAfter: null}, {closeAfter: null});
+      var htmlContent = this.notificationTemplateFor.replyConsumerQuestion.replace('$question$', data.question);
+      this.notify.success({raw: htmlContent, closeAfter: null}, {closeAfter: null});
     }
   },
 
@@ -60,6 +60,5 @@ export default Ember.ObjectController.extend({
     var self = this;
     this.notify.success(self.notificationTemplateFor.consumerTyping, {closeAfter: null});
   }
-
 
 });
