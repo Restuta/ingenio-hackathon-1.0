@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   preQuestionNotification: Notify.property(),
   questionFormNotification: Notify.property(),
   canReply: false,
+  preQuestionMessage: 'Somebody is typing a question...',
   queryParams: ['advisorid'],
   advisorid: null,  //Need to have this property to match the case of querystring :(
 
@@ -16,7 +17,8 @@ export default Ember.Controller.extend({
     checkItOut: function() {
       this.questionPopup = this.get('questionFormNotification').success({closeAfter: null});
       this.preQuestionPopup.set('visible', false);
-  },
+      $('#overlay-back').fadeIn(500);
+    },
 
   actions: {
     notify: function() {
@@ -24,8 +26,15 @@ export default Ember.Controller.extend({
       Notify.success({closeAfter: null});
     sendReply: function() {
       this.questionPopup.set('visible', false);
-      this.questionPopup.set('visible', true);
-	}
+    },
+
+    preQuestionFormClosed: function() {
+      console.log('pre-question form closed');
+    },
+    questionFormClosed: function() {
+      console.log('question form closed');
+      $('#overlay-back').fadeOut(500);
+    }
   },
 
   sockets: {
@@ -35,6 +44,7 @@ export default Ember.Controller.extend({
 
     'new-question-posted': function(data) {
       this.set('canReply', true);
+      this.set('preQuestionMessage', 'Somebody just posted a question!');
     },
 
     'consumer-pressed-key': function(data) {

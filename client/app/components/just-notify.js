@@ -26,7 +26,6 @@ export default Ember.Component.extend({
         klass = FoundationView;
       }
       else if ('bootstrap' === style) {
-
         klass = BootstrapView;
       }
       else {
@@ -35,6 +34,7 @@ export default Ember.Component.extend({
         );
       }
     }
+
     this.set('messageClass', klass || this.constructor.defaultViewClass);
   },
   show: function(message) {
@@ -125,9 +125,12 @@ export var MessageView = Ember.View.extend({
         var parentView = that.get('parentView');
         if (parentView) {
           parentView.get('messages').removeObject(that.get('message'));
+          parentView.sendAction('close');
           that.set('message.visible', null);
         }
       }
+
+      return true;
     }
   }
 }).reopenClass({
