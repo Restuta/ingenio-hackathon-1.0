@@ -43,7 +43,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'demo') {
-    ENV.EmberENV.socketServer = '10.50.1.135'; //Anton's laptop
+    ENV.EmberENV.socketServer = '10.2.1.62'; //Anton's laptop
   }
 
   if (environment === 'test') {

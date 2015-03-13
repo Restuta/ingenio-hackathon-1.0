@@ -1,24 +1,25 @@
 <div class="advisor-dashboard-bg">
-<div id="overlay-back"></div>
-<div id="overlay">
-{{#just-notify source=preQuestionNotification close="preQuestionFormClosed"}}
-    <div class="text-center">
-        <h4>{{preQuestionMessage}}</h4>
-        <button class="btn btn-primary" {{action "checkItOut"}}>Check it out</button>
-    </div>
-{{/just-notify}}
 </div>
-
-{{#just-notify source=questionFormNotification class="position-center" close="questionFormClosed"}}
-    <h4>Question from our user: {{questionText}}...</h4>
-    <div>
-        {{textarea rows="4" cols="32" value=answer}}
-
-        <div class="text-right">
-            <button {{bind-attr class=":btn :btn-primary canReply:enabled:disabled"}} {{action "sendReply"}}>Reply</button>
-        </div>
+    <div id="overlay-back"></div>
+    <div id="overlay">
+      {{#just-notify source=preQuestionNotification close="preQuestionFormClosed"}}
+          <div class="text-center">
+              <h4>{{preQuestionMessage}}</h4>
+              <button class="btn btn-primary" {{action "checkItOut"}}>Check it out</button>
+          </div>
+      {{/just-notify}}
     </div>
-{{/just-notify}}
 
-</div>
+  {{#just-notify source=questionFormNotification class="position-center" close="questionFormClosed"}}
+      <h4 class="user-status">{{userStillTypingText}}</h4>
+      <h4>{{questionText}}</h4>
+
+      <div class="fourm-group">
+        {{textarea rows="2" cols="32" class="form-control"  value=answer}}
+
+          <div class="btn-reply">
+              <button {{bind-attr class=":btn :btn-primary form-control canReply:enabled:disabled"}} {{action "sendReply"}}>Reply</button>
+          </div>
+      </div>
+  {{/just-notify}}
 

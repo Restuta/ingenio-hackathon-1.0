@@ -11,16 +11,19 @@
           <b>{{advisor}}</b>,
       {{/each}} are replying... </i></small>
   {{else}}
-      <h2>Ask just about anything!</h2>
+      <h2>Ask <span class="hundreds-advisors">hundreds</span> Advisors just about anything!</h2>
+      <h4>We promise you will get first answer in less then a minute.</h4>
+
 
       <div class="input-group input-group-lg">
           {{input-with-on-change class="form-control" type="text" maxlength="140" value=questionAsked
           placeholder="Type in your question..." onInputChange="onInputChange" startedTyping="startedTyping"}}
             <span class="input-group-btn">
-              <button class="btn btn-success" type="submit" {{action 'submitQuestion'}}>Ask a <i>bunch</i> of Advisors
-              </button>
+              <button class="btn btn-success" type="submit" {{action 'submitQuestion'}}>Ask</button>
             </span>
       </div>
+
+
       <!-- to be removed later since we will show after submitting the question-->
       <small><i>Please be patient while our advisors {{#each advisor in advisorsTyping}}
           <b>{{advisor}}</b>,

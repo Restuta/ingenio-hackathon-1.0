@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
   queryParams: ['advisorId'],
   advisorId: null,  //Need to have this property to match the case of querystring :(
   answer: '',
+  userStillTypingText: 'They are still typing...',
 
   actions: {
     checkItOut: function() {
@@ -19,7 +20,7 @@ export default Ember.Controller.extend({
     },
     sendReply: function() {
       this.questionPopup.set('visible', false);
-      
+
       this.socket.emit('new-advisor-answer', {
         advisorId: this.get('advisorId'),
         answer: this.get('answer')
@@ -38,14 +39,18 @@ export default Ember.Controller.extend({
       this.preQuestionPopup = this.get('preQuestionNotification').success({closeAfter: null});
     },
 
-    'new-question-posted': function() {
+    'new-question-posted': function(data) {
+
+      this.set('questionText', data.question);
+
       this.set('canReply', true);
       this.set('preQuestionMessage', 'Somebody just posted a question!');
+      this.set('userStillTypingText', 'They are waiting for your reply!');
     },
 
     'consumer-pressed-key': function(data) {
       //this.get('questionFormNotification').success({closeAfter: null});
-      this.set('questionText', data.value);
+      this.set('questionText', data.value + '...');
     }
   }
 });
