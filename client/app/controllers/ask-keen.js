@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
-  userId: function(){
-    var bound = {min: 100,max: 200};
+  userId: function() {
+    var bound = {min: 100, max: 200};
 
     return Math.floor(Math.random() * (bound.max - bound.min + 1)) + bound.min;
   }.property(),
@@ -11,7 +11,7 @@ export default Ember.ObjectController.extend({
   respondingAdvisors: [],
   advisorsTyping: [],
   isQuestionSubmitted: false,
-  anyAnswerPresent: function(){
+  anyAnswerPresent: function() {
     return (this.get('answersFromAdvisors').length > 0);
   }.property('answersFromAdvisors.length'),
 
@@ -45,7 +45,7 @@ export default Ember.ObjectController.extend({
   actions: {
     submitQuestion: function() {
       //todo retuta: show email box
-      //this.set('isQuestionSubmitted', true);
+      this.set('isQuestionSubmitted', true);
       this.socket.emit('new-question-posted', {userId: 1234, question: this.get('questionAsked')});
     },
     onInputChange: function(sender, value) {
@@ -59,16 +59,16 @@ export default Ember.ObjectController.extend({
 
   sockets: {
     'new-advisor-answer': function(data) {
-        console.log('EVENT: new-advisor-answer');
-        console.log(data);
-      //Add the incoming message data which inturn contain advisor info
-        this.get('answersFromAdvisors').pushObject(data);
+
+      this.get('answersFromAdvisors').pushObject(data);
     },
-    'advisor-started-typing': function(advisor){
-      console.log('EVENT: advisor-typing');
+    'advisor-started-typing': function(advisor) {
       console.log(advisor);
       //Add to a list of responding advisors
       this.get('respondingAdvisors').pushObject(advisor.name);
+    },
+    'advisor-pressed-key': function(data) {
+        console.log(data.value);
     },
     connect: function() {
       console.log('Sockets connected...');

@@ -28,7 +28,8 @@ module.exports = function Router(socketIo) {
                 {name: 'consumer-pressed-key', broadcast: true}
             ],
             advisor: [
-                {name: 'new-advisor-answer', broadcast: true}
+                //{name: 'new-advisor-answer', broadcast: true},
+                {name: 'advisor-pressed-key', broadcast: true}
             ]
         };
 
@@ -43,10 +44,26 @@ module.exports = function Router(socketIo) {
             });
         });
 
+        //_.each(events.advisor, function(event) {
+        //    socket.on(event.name, function(data) {
+        //        log.event(event.name, data);
+        //
+        //        if (event.broadcast === true) {
+        //            socket.broadcast.emit(event.name, data);
+        //        }
+        //    });
+        //});
+
         //for debugging
         socket.on('test', function(data) {
             log.event('test', data);
             socket.emit('new-answer', {a: 8});
+        });
+
+        socket.on('advisor-pressed-key', function(data) {
+            log.event('advisor-pressed-key', data);
+
+            socket.broadcast.emit('advisor-pressed-key', data);
         });
 
         socket.on('new-advisor-answer', function(data) {

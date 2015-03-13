@@ -34,6 +34,10 @@ export default Ember.Controller.extend({
     }
   },
 
+  onReplyChange: function() {
+    this.socket.emit('advisor-pressed-key', {value: this.get('answer')})
+  }.observes('answer'),
+
   sockets: {
     'consumer-started-typing': function() {
       this.preQuestionPopup = this.get('preQuestionNotification').success({closeAfter: null});
