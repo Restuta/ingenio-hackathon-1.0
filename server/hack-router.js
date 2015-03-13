@@ -55,7 +55,7 @@ module.exports = function Router(socketIo) {
             log.info('selectedAdvisor:', advisorInfo);
 
             //TODO - Muthu/Anton , the above find method is still not working need to fix it
-            data.profileImageUrl = "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg";
+            data.profileImageUrl = '/images/anton-advisor.jpg';
             data.advisorName= "Psychic Answers By Candy";
             data.postedDate= "March 10, 2015";
             data.starRating= "4";
@@ -114,16 +114,34 @@ var toJson = function(object) {
 //Sample advisors data
 var advisorList = [{
     id: 101,
-    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/22472422-1240184748.jpg",
-    advisorName: "Love Expert Sara",
-    postedDate: "March 10, 2015",
+    profileImageUrl: "/images/muthuadvisor.jpg",
+    advisorName: "Muthu Pet Psychic",
+    postedDate: "March 13, 2015",
     starRating: "5"
 }, {
     id: 102,
+    profileImageUrl: "/images/anton-advisor.jpg",
+    advisorName: "Anton advisor",
+    postedDate: "March 13, 2015",
+    starRating: "5"
+},{
+    id: 103,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/54165337-1629739034.jpg",
+    advisorName: "Intuitive coach",
+    postedDate: "March 13, 2015",
+    starRating: "3"
+},{
+    id: 104,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/22472422-1240184748.jpg",
+    advisorName: "Love Expert Sara",
+    postedDate: "March 13, 2015",
+    starRating: "4"
+},{
+    id: 105,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg",
     advisorName: "Psychic Answers By Candy",
-    postedDate: "March 10, 2015",
-    starRating: "4"
+    postedDate: "March 13, 2015",
+    starRating: "3"
 }];
 
 
