@@ -17,10 +17,6 @@ Day #1
 
 Day #2
 
-
-
-
-
 Bonus:
 - Using some NLP, try to find the type of question posted and when informing advisor about the likeliness of a question arriving,
   mention about the type of question he might expect
@@ -31,29 +27,21 @@ Bonus:
 Issues:
 =========
 
-
-
-
-
 Sample Data & Event-names:
 ==========================
 
 
-Consumer-side
--------------
-    1) SEND:
-              event-name: post-new-question
-              data: {userId: 1234, question: 'Question from user'}
-    2) RECEIVE:
-              event-name: new-advisor-answer
-              data: {advisorId: 101, answer: 'Sample answer from advisor'}   //All the other data which are required by the UI to construct the message-component
+Consumer side
+- SEND:
+  - event-name: new-question-posted
+  - data: {userId: 1234, question: 'Question from user'}
+- RECEIVE:
+  - event-name: new-advisor-answer
+  - data: {advisorId: 101, answer: 'Sample answer from advisor'}   //All the other data which are required by the UI to construct the message-component
 
-Advisor-side
-------------
-
-    1) SEND: When he/she is done with replying the question
-
-    2) RECEIVE:
-              event-name: new-question-posted
-              data: {userId: 1234, question: 'Question from user'}
+Advisor side
+- SEND: When he/she is done with replying the question
+- RECEIVE:
+  - event-name: new-question-posted
+  - data: {userId: 1234, question: 'Question from user'}
 
