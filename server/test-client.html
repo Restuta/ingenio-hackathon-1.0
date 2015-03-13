@@ -11,14 +11,14 @@
   <button id="consumer-started-typing">consumer-started-typing</button>
 
   <script>
-    var socket = io.connect('http://localhost:31337');
+    var io = io.connect('http://localhost:31337');
 
-    socket.on('connected-to-server', function (data) {
-      console.log(data);
-      socket.emit('consumer-started-typing', {source: 'connected-to-server'});
-    });
+    // io.on('connect', function (socket) {
+    //   console.log('emitting new-question-posted');
+    //   socket.emit('new-question-posted', {source: 'connection'});
+    // });
 
-    socket.on('test', function(data) {
+    io.on('test', function(data) {
       printMessage(data);  
     });
 
@@ -28,7 +28,8 @@
 
     $('#consumer-started-typing').click(function() {
         console.log('clicked');
-        socket.emit('consumer-started-typing', {source: 'click'});
+        debugger;
+        io.sockets.emit('broadcast', {source: 'click'});
     });
   </script>
   </body>

@@ -13,38 +13,37 @@ module.exports = function Router(socketIo) {
     var io = socketIo;
     var totalClients = 0;
 
-    router.get('/', function (req, res) {
+    router.get('/', function(req, res) {
         res.send('hello hacking world');
     });
 
-    io.on('connection', function (socket) {
+    io.on('connection', function(socket) {
         log.info('client connected, total clients: ' + ++totalClients + chalk.grey(' connectionId: ' + socket.client.conn.id));
 
         socket.emit('connected-to-server', {msg: 'connected to server'});
 
-        socket.on('consumer-started-typing', function (data) {
+        socket.on('consumer-started-typing', function(data) {
             log.event('consumer-started-typing', data);
         });
 
         //for debugging
-        socket.on('test', function (data) {
+        socket.on('test', function(data) {
             log.event('test', data);
-            socket.emit('new-answer', {a: 8});
+            socket.emit('new-answer', {a:8});
         });
 
-        socket.on('post-new-question', function (data) {
-            log.event('post-new-question', data);
-            //massage the data before emitting if required
-            socket.emit('new-question-posted', data);
+        socket.on('new-question-posted', function(data) {
+            log.event('new-question-posted', data);
+            socket.broadcast.emit('new-question-posted', data);
         });
 
-        socket.on('disconnect', function () {
+        socket.on('disconnect', function() {
             log.info('client disconnected, clients: ' + --totalClients);
         });
     });
 
 
-    router.post('/:eventName', function (req, res) {
+    router.post('/:eventName', function(req, res) {
         var eventName = req.params.eventName;
 
         io.emit(eventName, ';D');
@@ -55,18 +54,18 @@ module.exports = function Router(socketIo) {
 };
 
 var log = {
-    info: function (msg) {
+    info: function(msg) {
         console.log(chalk.cyan('INFO ') + msg);
     },
-    debug: function (msg) {
+    debug: function(msg) {
         console.log(chalk.magenta('DEBUG ') + msg);
     },
-    event: function (name, data) {
-        console.log(chalk.green('EVENT ') + chalk.yellow(name) + ' ' + toJson(data));
+    event: function(name, data) {
+        console.log(chalk.green('EVENT ')  + chalk.yellow(name) + ' ' + toJson(data));
     }
 };
 
-var toJson = function (object) {
+var toJson = function(object) {
     if (!object) {
         return '';
     }
