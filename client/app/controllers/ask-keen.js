@@ -46,7 +46,7 @@ export default Ember.ObjectController.extend({
       this.socket.emit('new-question-posted', {userId: 1234, question: this.get('questionAsked')});
     },
     onInputChange: function(sender, value) {
-      console.log(value);
+      this.socket.emit('consumer-pressed-key', {value: value});
     }
   },
 

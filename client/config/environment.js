@@ -10,12 +10,15 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-      }
+      },
+
+      socketServer: 'localhost'
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      //socketServer: 'localhost'
     }
   };
 
@@ -39,6 +42,10 @@ module.exports = function(environment) {
     //ENV.locationType = 'hash'; //to support urls with '#' since history API requires server-side setup
   }
 
+  if (environment === 'demo') {
+    ENV.EmberENV.socketServer = '10.50.1.135'; //Anton's laptop
+  }
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
@@ -52,7 +59,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
   }
 
   return ENV;

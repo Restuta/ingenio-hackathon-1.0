@@ -8,7 +8,7 @@ Ember.MODEL_FACTORY_INJECTIONS = true;
 var EmberSockets = window.EmberSockets;
 
 var Socket = EmberSockets.extend({
-  host: 'localhost',
+  host: Ember.ENV.socketServer,
   port: 31337,
   controllers: ['ask-keen', 'dashboard'],
   autoConnect: true
