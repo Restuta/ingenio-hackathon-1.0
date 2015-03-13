@@ -1,7 +1,9 @@
 <li class="advisor-message media">
-    <span class="pull-left">
+    <!-- TODO: muthu - get the bootstrap equivalent class to center the cotent -->
+    <span class="pull-left" style="text-align:center;">
         <img {{bind-attr src=message.profileImageUrl}} class="img-circle media-object advisor-image" alt="Sample Image">
         <img {{bind-attr src=starRatingImageUrl}} alt="stars" border="0">
+        <div class="price-per-minute">${{message.pricePerMinute}}</div>
     </span>
 
     <div class="media-body">
@@ -10,7 +12,10 @@
         </h4>
         <span class="user-message inline-block">
             {{message.answer}}
-            {{#link-to 'chat' (query-params advisorid=message.advisorId userid=userId)}}Continue in free chat...{{/link-to}}
         </span>
+        <div>
+        {{#link-to 'chat' (query-params advisorid=message.advisorId userid=userId)}}
+            Continue in free chat...{{/link-to}}
+        </div>
     </div>
 </li>
