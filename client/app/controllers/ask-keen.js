@@ -4,6 +4,7 @@ export default Ember.ObjectController.extend({
   questionAsked: '',
   answersFromAdvisors: [],
   respondingAdvisors: [],
+  advisorsTyping: [],
   isQuestionSubmitted: false,
 
   init: function() {
@@ -27,6 +28,10 @@ export default Ember.ObjectController.extend({
       messageText: "Can't say for sure, but I feel the presence of somebody important. It might be somebody from your past or nearest future. I need a little more info to tell for sure.",
       starRating: "4"
     });
+
+    this.get('advisorsTyping').push('muthudvisor');
+    this.get('advisorsTyping').push('Anton advisor');
+    this.get('advisorsTyping').push('krishna-advisor');
   },
 
   actions: {

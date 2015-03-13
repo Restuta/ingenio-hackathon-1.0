@@ -1,20 +1,32 @@
 <div class="col-sm-12">
   {{#if isQuestionSubmitted}}
       <h2>You asked:</h2>
+
       <div class="panel panel-default">
           <div class="panel-body">
             {{questionAsked}}
           </div>
       </div>
+    {{#each advisor in advisorsTyping}}
+      {{advisor}}
+    {{/each}}
+      <small><i>Please be patient while our advisors <b>muthudvisor</b>, <b>Anton advisor</b>, <b>krishna-advisor</b>
+          and <b>more</b> are replying... </i></small>
   {{else}}
       <h2>Ask just about anything!</h2>
+
       <div class="input-group input-group-lg">
-          {{input class="form-control" type="text" maxlength="140" value=questionAsked placeholder="Type in your question..."}}
-            <span class="input-group-btn">
+        {{input class="form-control" type="text" maxlength="140" value=questionAsked placeholder="Type in your question..."}}
+          <span class="input-group-btn">
               <button class="btn btn-success" type="submit" {{action 'submitQuestion'}}>Ask a <i>bunch</i> of Advisors
               </button>
             </span>
       </div>
+      <!-- to be removed later since we will show after submitting the question-->
+      <small><i>Please be patient while our advisors {{#each advisor in advisorsTyping}}
+          <b>{{advisor}}</b>,
+      {{/each}} and <b>more</b> are replying... </i></small>
+
   {{/if}}
     <br/>
     <br/>
