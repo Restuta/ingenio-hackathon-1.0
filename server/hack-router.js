@@ -47,6 +47,29 @@ module.exports = function Router(socketIo) {
             socket.broadcast.emit('consumer-pressed-key', data);
         });
 
+        socket.on('new-advisor-answer', function(data) {
+            log.event('new-advisor-answer', data);
+            //TODO:Add some advisor info matchign the advisorid to the data which is required to be shown on the home page
+            //Muthu- Anton to help here. Think we can get better filtered in lodash
+            //var selectedAdvisor = null;
+            //_.find(advisorList,function(item){
+            //    if (item.id === data.advisorId){
+            //        log.info('Matching advisor : ' +item.id);
+            //        selectedAdvisor = item;
+            //    }
+            //});
+
+            data.profileImageUrl = "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg";
+            data.advisorName= "Psychic Answers By Candy";
+            data.postedDate= "March 10, 2015";
+            data.starRating= "4";
+
+            log.event('new-advisor-answer(modified-data)', data);
+            socket.broadcast.emit('new-advisor-answer', data);
+        });
+
+
+
         socket.on('disconnect', function() {
             log.info('client disconnected, clients: ' + --totalClients);
         });
@@ -93,21 +116,17 @@ var toJson = function(object) {
 };
 
 //Sample advisors data
-var advisorInfo = [{
-    id: 1,
+var advisorList = [{
+    id: 101,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/22472422-1240184748.jpg",
-    advisorId: 101,
     advisorName: "Love Expert Sara",
     postedDate: "March 10, 2015",
-    messageText: "Excellent feature! I love it. We are defintiely going to rock it on this friday!. Excellent feature! I love it. We are defintiely going to rock it on this friday!Excellent feature! I love it. We are defintiely going to rock it on this friday!",
     starRating: "5"
 }, {
-    id: 2,
+    id: 102,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg",
-    advisorId: 103,
     advisorName: "Psychic Answers By Candy",
     postedDate: "March 10, 2015",
-    messageText: "Can't say for sure, but I feel the presence of somebody important. It might be somebody from your past or nearest future. I need a little more info to tell for sure.",
     starRating: "4"
 }];
 

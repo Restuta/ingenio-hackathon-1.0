@@ -3,11 +3,7 @@ import Ember from 'ember';
 export default Ember.ObjectController.extend({
   needs: ['application'],
   queryParams: ['advisorid'],
-  advisorid: null,  //Need to have this property to match the case of querystring which is bad :(
-  advisorId: function(){
-    //This is the same as 'advisor' property , but in a camelCase form
-    return this.get('advisorid');
-  },
+  advisorid: null,  //Need to have this property to match the case of querystring :(
   init: function () {
     //Initialize push service object here?
   },
@@ -23,7 +19,7 @@ export default Ember.ObjectController.extend({
     },
     //TODO: Muthu test method to send messages to ask-keen page
     sendAnswer: function(advisorAnswer){
-      this.socket.emit('new-advisor-answer', {advisorId: this.get('advisorId'), answer: advisorAnswer});
+      this.socket.emit('new-advisor-answer', {advisorId: this.get('advisorid'), answer: advisorAnswer});
     }
   },
 

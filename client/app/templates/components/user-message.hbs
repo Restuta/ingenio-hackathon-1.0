@@ -9,7 +9,7 @@
             <small><i>Posted on {{message.postedDate}} (8 seconds ago)</i></small>
         </h4>
         <span class="user-message inline-block">
-            {{message.messageText}}
+            {{message.answer}}
             {{#link-to 'chat' (query-params advisorid=message.advisorId userid=userId)}}Continue in free chat...{{/link-to}}
         </span>
     </div>
