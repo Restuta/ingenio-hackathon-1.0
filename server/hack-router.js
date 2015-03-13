@@ -50,21 +50,17 @@ module.exports = function Router(socketIo) {
         socket.on('new-advisor-answer', function(data) {
             log.event('new-advisor-answer', data);
             //TODO:Add some advisor info matchign the advisorid to the data which is required to be shown on the home page
-            //Muthu- Anton to help here. Think we can get better filtered in lodash
-            //var selectedAdvisor = null;
-            //_.find(advisorList,function(item){
-            //    if (item.id === data.advisorId){
-            //        log.info('Matching advisor : ' +item.id);
-            //        selectedAdvisor = item;
-            //    }
-            //});
 
+            var advisorInfo = _.find(advisorList, {'id': 102});
+            log.info('selectedAdvisor:', advisorInfo);
+
+            //TODO - Muthu/Anton , the above find method is still not working need to fix it
             data.profileImageUrl = "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg";
             data.advisorName= "Psychic Answers By Candy";
             data.postedDate= "March 10, 2015";
             data.starRating= "4";
 
-            log.event('new-advisor-answer(modified-data)', data);
+            //log.event('new-advisor-answer(modified-data)', data);
             socket.broadcast.emit('new-advisor-answer', data);
         });
 
