@@ -113,35 +113,35 @@ var toJson = function(object) {
 
 //Sample advisors data
 var advisorList = [{
-    id: 101,
+    advisorId: 101,
     profileImageUrl: "/images/muthuadvisor.jpg",
     advisorName: "Muthu advisor",
     postedDate: "March 13, 2015",
     starRating: "5",
     pricePerMinute: ".99"
 }, {
-    id: 102,
+    advisorId: 102,
     profileImageUrl: "/images/anton-advisor.jpg",
     advisorName: "Anton advisor",
     postedDate: "March 13, 2015",
     starRating: "5",
     pricePerMinute: "1.99"
 },{
-    id: 103,
+    advisorId: 103,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/54165337-1629739034.jpg",
     advisorName: "Intuitive coach",
     postedDate: "March 13, 2015",
     starRating: "3",
     pricePerMinute: "4.99"
 },{
-    id: 104,
+    advisorId: 104,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/22472422-1240184748.jpg",
     advisorName: "Love Expert Sara",
     postedDate: "March 13, 2015",
     starRating: "4",
     pricePerMinute: "2.99"
 },{
-    id: 105,
+    advisorId: 105,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg",
     advisorName: "Psychic Answers By Candy",
     postedDate: "March 13, 2015",
