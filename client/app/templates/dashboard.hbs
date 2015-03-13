@@ -10,6 +10,14 @@
       {{/just-notify}}
     </div>
 
+
+{{#just-notify source=whatsYourNameNotification class="position-center"}}
+    <div class="text-center">
+        {{input class="form-control input-lg" value=advisorName placeholder="Your name?" }}
+        <button {{bind-attr class=":btn :btn-primary  :save-name"}} {{action "saveAdvisorName"}}>Save</button>
+    </div>
+{{/just-notify}}
+
   {{#just-notify source=questionFormNotification class="position-center" close="questionFormClosed"}}
       <h4 class="user-status">{{userStillTypingText}}</h4>
       <h4>{{questionText}}</h4>

@@ -73,6 +73,14 @@ $green: #18BC9C;
   bottom: 0;
 }
 
+.advisor-name {
+  color: $green;
+}
+
+.save-name {
+  margin-top: 20px;
+}
+
 @media only screen and (max-width: 680px) {
   .position-center {
     left: 0;

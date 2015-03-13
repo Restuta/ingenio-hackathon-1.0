@@ -1,3 +1,15 @@
+{{#just-notify source=sessioinIsOverNotification class="position-center"}}
+    <div class="text-center">
+        {{#if ccAdded}}
+            Done!
+        {{else}}
+          <h3>Your free session is over, please add more minutes</h3>
+          {{input class="form-control input-lg" value=advisorName placeholder="Your CC number?" }}
+            <button {{bind-attr class=":btn :btn-primary  :save-name"}} {{action "addMinutes"}}>Add minutes</button>
+        {{/if}}
+    </div>
+{{/just-notify}}
+
 <br/><br/><br/><br/>
 <div class="col-md-12">
     <div class="panel panel-info">
@@ -49,7 +61,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Enter Message">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-success" type="button">SEND</button>
+                                        <button class="btn btn-success" type="button" {{action "send"}}>SEND</button>
                                     </span>
             </div>
         </div>

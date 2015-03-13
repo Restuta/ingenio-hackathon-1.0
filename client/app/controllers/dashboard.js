@@ -5,13 +5,19 @@ export default Ember.Controller.extend({
   //defining
   preQuestionNotification: Notify.property(),
   questionFormNotification: Notify.property(),
+  whatsYourNameNotification: Notify.property(),
   canReply: false,
   preQuestionMessage: 'Somebody is typing a question...',
   queryParams: ['advisorId'],
   advisorId: null,  //Need to have this property to match the case of querystring :(
   answer: '',
   userStillTypingText: 'They are still typing...',
-  advisorName: 'Muthu',
+  advisorName: '',
+
+
+  init: function() {
+    this.namePopup = this.get('whatsYourNameNotification').success({closeAfter: null});
+  },
 
   actions: {
     checkItOut: function() {
@@ -32,6 +38,12 @@ export default Ember.Controller.extend({
     },
     questionFormClosed: function() {
       $('#overlay-back').fadeOut(500);
+    },
+    saveAdvisorName: function() {
+      this.namePopup.set('visible', false);
+      this.socket.emit('advisor-name-set', {
+        advisorName: this.get('advisorName')
+      })
     }
   },
 
@@ -60,6 +72,9 @@ export default Ember.Controller.extend({
     'consumer-pressed-key': function(data) {
       //this.get('questionFormNotification').success({closeAfter: null});
       this.set('questionText', data.value + '...');
+    },
+    'advisor-assigned': function(advisor) {
+      this.set('advisorId', advisor.advisorId);
     }
   }
 });

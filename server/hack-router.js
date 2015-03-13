@@ -75,6 +75,19 @@ module.exports = function Router(socketIo) {
             socket.broadcast.emit('new-advisor-answer', data);
         });
 
+        socket.on('advisor-name-set', function(data) {
+            log.event('advisor-name-set', data);
+
+            var advisor = _.find(advisorList, {assigned: false});
+            advisor.assigned = true;
+            advisor.advisorName = data.advisorName;
+
+            log.debug(advisor.advisorId);
+            socket.emit('advisor-assigned', {
+                advisorId: advisor.advisorId
+            });
+        });
+
         socket.on('disconnect', function() {
             log.info('client disconnected, clients: ' + --totalClients);
         });
@@ -126,36 +139,114 @@ var advisorList = [{
     advisorName: "Muthu advisor",
     postedDate: "March 13, 2015",
     starRating: "5",
-    pricePerMinute: ".99"
+    pricePerMinute: ".99",
+    assigned: false
 }, {
     advisorId: 102,
     profileImageUrl: "/images/anton-advisor.jpg",
     advisorName: "Anton advisor",
     postedDate: "March 13, 2015",
     starRating: "5",
-    pricePerMinute: "1.99"
+    pricePerMinute: "1.99",
+    assigned: false
 }, {
     advisorId: 103,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/54165337-1629739034.jpg",
     advisorName: "Intuitive coach",
     postedDate: "March 13, 2015",
     starRating: "3",
-    pricePerMinute: "4.99"
+    pricePerMinute: "4.99",
+    assigned: false
 }, {
     advisorId: 104,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/22472422-1240184748.jpg",
     advisorName: "Love Expert Sara",
     postedDate: "March 13, 2015",
     starRating: "4",
-    pricePerMinute: "2.99"
+    pricePerMinute: "2.99",
+    assigned: false
 }, {
     advisorId: 105,
     profileImageUrl: "http://i.keen.com/ad-products.cdn.memberphotos/14123273-2128725806.jpg",
     advisorName: "Psychic Answers By Candy",
     postedDate: "March 13, 2015",
     starRating: "3",
-    pricePerMinute: "3.99"
-}];
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 106,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/13809823-841567662.jpg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 107,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/3683950-1232520642.jpg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 108,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/52359270-95640601.jpeg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 109,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/44290729-1909489071.jpg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 110,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/44290729-1909489071.jpg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 111,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/10962747-1270546790.jpg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 112,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/4623215-207171976.jpg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 113,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/37135232-122195377.jpg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}, {
+    advisorId: 114,
+    profileImageUrl: "http://i.keen.com/ad-products.cdn.member75x75/11293231-1418926082.jpeg",
+    advisorName: "Psychic Answers By Candy",
+    postedDate: "March 13, 2015",
+    starRating: "3",
+    pricePerMinute: "3.99",
+    assigned: false
+}
+];
 
 var attachAdvisorInfo = function(data) {
     //Ensure the incoming data has the key 'advisorId'
