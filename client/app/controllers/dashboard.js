@@ -1,6 +1,12 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+export default Ember.ObjectController.extend({
+  queryParams: ['advisorid'],
+  advisorid: null,  //Need to have this property to match the case of querystring which is bad :(
+  advisorId: function(){
+    //This is the same as 'advisor' property , but in a camelCase form
+    return this.get('advisorid');
+  },
   needs: ['application'],
   init: function () {
     //Initialize push service object here?
@@ -13,6 +19,7 @@ export default Ember.Controller.extend({
       this.notify.success({raw: self.notificationTemplateFor.consumerTyping, closeAfter: null});
       self.onQuestionArrives({question: 'What does my future looks like. I\'ve been going through a bad year that am totally lost. I need someone to help me here'});
       console.log(this.get('controllers.application.currentRouteName'));
+      console.log(this.get('advisorId'));
     }
   },
 
