@@ -31,7 +31,7 @@ export default Ember.ObjectController.extend({
     },
 
     'consumer-pressed-key': function(data) {
-      this.set('questionText', data.value);
+        this.set('questionText', data.value);
     }
   },
 
@@ -51,8 +51,8 @@ export default Ember.ObjectController.extend({
   onQuestionArrives: function(data) {
     //Show the form with reply only for dashboard page
     if (this.get('controllers.application.currentRouteName') === 'dashboard') {
-      var htmlContent = this.notificationTemplateFor.replyConsumerQuestion.replace('$question$', data.question);
-      this.notify.success({raw: htmlContent, closeAfter: null}, {closeAfter: null});
+    var htmlContent = this.notificationTemplateFor.replyConsumerQuestion.replace('$question$', data.question);
+    this.notify.success({raw: htmlContent, closeAfter: null}, {closeAfter: null});
     }
   },
 
