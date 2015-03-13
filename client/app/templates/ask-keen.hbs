@@ -24,9 +24,10 @@
 
 
       <!-- to be removed later since we will show after submitting the question-->
-      <small><i>Please be patient while our advisors {{#each advisor in advisorsTyping}}
-          <b>{{advisor}}</b>,
-      {{/each}} are replying... </i></small>
+      <small><i>Please be patient while
+        {{#each advisor in advisorsTyping}}
+          <div><b>{{advisor}} is replying...</b></div>
+      {{/each}} </i></small>
 
   {{/if}}
     <br/>
@@ -34,14 +35,14 @@
     <br/>
 
   {{#if anyAnswerPresent}}
-    <h3>Responses from our advisors:</h3>
-    <br/>
-    <ul class="media-list advisor-message-list">
-      {{#each answer in answersFromAdvisors}}
-        {{user-message message=answer userId=userId question=questionAsked}}
-          <br/>
-      {{/each}}
-    </ul>
+      <h3>Responses from our advisors:</h3>
+      <br/>
+      <ul class="media-list advisor-message-list">
+        {{#each answer in answersFromAdvisors}}
+          {{user-message message=answer userId=userId question=questionAsked}}
+            <br/>
+        {{/each}}
+      </ul>
   {{/if}}
 </div>
 

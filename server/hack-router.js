@@ -75,12 +75,10 @@ module.exports = function Router(socketIo) {
             socket.broadcast.emit('new-advisor-answer', data);
         });
 
-           
-
-            socket.on('disconnect', function() {
-                log.info('client disconnected, clients: ' + --totalClients);
-            });
+        socket.on('disconnect', function() {
+            log.info('client disconnected, clients: ' + --totalClients);
         });
+    });
 
     router.post('/:eventName', function(req, res) {
         var eventName = req.params.eventName;

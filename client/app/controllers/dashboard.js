@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
   advisorId: null,  //Need to have this property to match the case of querystring :(
   answer: '',
   userStillTypingText: 'They are still typing...',
+  advisorName: 'Muthu',
 
   actions: {
     checkItOut: function() {
@@ -35,7 +36,11 @@ export default Ember.Controller.extend({
   },
 
   onReplyChange: function() {
-    this.socket.emit('advisor-pressed-key', {value: this.get('answer')})
+    this.socket.emit('advisor-pressed-key', {
+      value: this.get('answer'),
+      advisorId: this.get('advisorId'),
+      advisorName: this.get('advisorName')
+    });
   }.observes('answer'),
 
   sockets: {
