@@ -7,11 +7,9 @@
             {{questionAsked}}
           </div>
       </div>
-    {{#each advisor in advisorsTyping}}
-      {{advisor}}
-    {{/each}}
-      <small><i>Please be patient while our advisors <b>muthudvisor</b>, <b>Anton advisor</b>, <b>krishna-advisor</b>
-          and <b>more</b> are replying... </i></small>
+      <small><i>Please be patient while our advisors {{#each advisor in advisorsTyping}}
+          <b>{{advisor}}</b>,
+      {{/each}} are replying... </i></small>
   {{else}}
       <h2>Ask just about anything!</h2>
 
@@ -26,7 +24,7 @@
       <!-- to be removed later since we will show after submitting the question-->
       <small><i>Please be patient while our advisors {{#each advisor in advisorsTyping}}
           <b>{{advisor}}</b>,
-      {{/each}} and <b>more</b> are replying... </i></small>
+      {{/each}} are replying... </i></small>
 
   {{/if}}
     <br/>
