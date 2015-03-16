@@ -56,6 +56,14 @@ $green: #18BC9C;
   color: #FFF;
 }
 
+.question {
+  background-color: rgb(184, 232, 223);
+  color: #222;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
 
 .green {
   color: $green;
@@ -63,6 +71,9 @@ $green: #18BC9C;
 
 .alert-box.success input, button, textarea {
   color: #000;
+}
+.is-replying {
+  font-style: italic;
 }
 
 .position-center {

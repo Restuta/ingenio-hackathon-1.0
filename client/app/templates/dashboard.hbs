@@ -1,33 +1,38 @@
 <div class="advisor-dashboard-bg">
 </div>
-    <div id="overlay-back"></div>
-    <div id="overlay">
-      {{#just-notify source=preQuestionNotification close="preQuestionFormClosed"}}
-          <div class="text-center">
-              <h4>{{preQuestionMessage}}</h4>
-              <button class="btn btn-primary" {{action "checkItOut"}}>Check it out</button>
-          </div>
-      {{/just-notify}}
-    </div>
-
-
-{{#just-notify source=whatsYourNameNotification class="position-center"}}
-    <div class="text-center">
+<div id="overlay-back"></div>
+<div id="overlay">
+  {{#just-notify source=whatsYourNameNotification class="position-center"}}
+      <div class="text-center">
         {{focused-input class="form-control input-lg" value=advisorName placeholder="Your name?" }}
-        <button {{bind-attr class=":btn :btn-primary  :save-name"}} {{action "saveAdvisorName"}}>Save</button>
-    </div>
-{{/just-notify}}
-
-  {{#just-notify source=questionFormNotification class="position-center" close="questionFormClosed"}}
-      <h4 class="user-status">{{userStillTypingText}}</h4>
-      <h4>{{questionText}}</h4>
-
-      <div class="fourm-group">
-        {{textarea rows="2" cols="32" class="form-control"  value=answer}}
-
-          <div class="btn-reply">
-              <button {{bind-attr class=":btn :btn-primary form-control canReply:enabled:disabled"}} {{action "sendReply"}}>Reply</button>
-          </div>
+          <button {{bind-attr class=":btn :btn-primary  :save-name"}} {{action "saveAdvisorName"}}>Save</button>
       </div>
   {{/just-notify}}
+
+  {{#just-notify source=preQuestionNotification close="preQuestionFormClosed"}}
+      <div class="text-center">
+          <h4>{{preQuestionMessage}}</h4>
+          <button {{bind-attr class=":btn :btn-primary nameEntered:enabled:disabled"}} {{action "checkItOut"}}>Check it out
+          </button>
+      </div>
+  {{/just-notify}}
+</div> 
+
+
+{{#just-notify source=questionFormNotification class="position-center" close="questionFormClosed"}}
+    <div class="fourm-group">
+
+        <div class="question">
+            <span {{bind-attr class=":glyphicon :glyphicon-ok :green canReply:visible:hidden"}} aria-hidden="true"></span>
+          {{questionText}}
+        </div>
+      {{textarea rows="2" cols="32" class="form-control"  value=answer}}
+
+        <div class="btn-reply">
+            <span class="user-status">{{userStillTypingText}}</span>
+            <button {{bind-attr class=":btn :btn-primary form-control canReply:enabled:disabled"}} {{action "sendReply"}}>Reply
+            </button>
+        </div>
+    </div>
+{{/just-notify}}
 

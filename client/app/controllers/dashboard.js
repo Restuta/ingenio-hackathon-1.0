@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
   answer: '',
   userStillTypingText: 'They are still typing...',
   advisorName: '',
+  nameEntered: false,
 
 
   init: function() {
@@ -40,6 +41,7 @@ export default Ember.Controller.extend({
       $('#overlay-back').fadeOut(500);
     },
     saveAdvisorName: function() {
+      this.set('nameEntered', true);
       this.namePopup.set('visible', false);
       this.socket.emit('advisor-name-set', {
         advisorName: this.get('advisorName')
