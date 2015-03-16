@@ -143,14 +143,11 @@ function createRandomAdvisor(name) {
         }
     };
 
-    var createAdviosorPromise = request('http://api.randomuser.me/')
+    return request('http://api.randomuser.me/')
         .then(function(body) {
-            var user = JSON.parse(body).results[0].user;
-            return user;
+            return JSON.parse(body).results[0].user;
         })
         .then(createAdvisor);
-
-    return createAdviosorPromise;
 }
 
 //Sample advisors data
