@@ -43,7 +43,7 @@ export default Ember.Controller.extend({
       this.namePopup.set('visible', false);
       this.socket.emit('advisor-name-set', {
         advisorName: this.get('advisorName')
-      })
+      });
     }
   },
 

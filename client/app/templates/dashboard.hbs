@@ -13,7 +13,7 @@
 
 {{#just-notify source=whatsYourNameNotification class="position-center"}}
     <div class="text-center">
-        {{input class="form-control input-lg" value=advisorName placeholder="Your name?" }}
+        {{focused-input class="form-control input-lg" value=advisorName placeholder="Your name?" }}
         <button {{bind-attr class=":btn :btn-primary  :save-name"}} {{action "saveAdvisorName"}}>Save</button>
     </div>
 {{/just-notify}}
