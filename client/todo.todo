@@ -1,3 +1,11 @@
+Features
+  - random avatar and advisor profile from https://randomuser.me/
+    - add fun boring-corporate version http://www.avatarpro.biz/avatar?s=256
+  -- ask for email
+    - show "is typing" at the email screen
+
+
+
 Day #1
 +- Initial infra for emberjs with bootstrap
 - HTML mock for,
