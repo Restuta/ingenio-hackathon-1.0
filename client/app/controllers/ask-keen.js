@@ -32,8 +32,8 @@ export default Ember.ObjectController.extend({
 
   sockets: {
     'new-advisor-answer': function(data) {
-
       this.get('answersFromAdvisors').pushObject(data);
+      this.get('advisorsTyping').removeObject(data.advisorName);
     },
     'advisor-pressed-key': function(data) {
       if (!this.get('advisorsTyping').contains(data.advisorName)) {
