@@ -2,7 +2,6 @@
     <span class="pull-left text-center">
         <img {{bind-attr src=message.profileImageUrl}} class="img-circle media-object advisor-image" alt="Sample Image">
         <img {{bind-attr src=starRatingImageUrl}} alt="stars" border="0">
-        <div class="price-per-minute">${{message.pricePerMinute}}</div>
     </span>
 
     <div class="media-body">
@@ -14,7 +13,7 @@
         </span>
         <div>
         {{#link-to 'chat' (query-params advisorid=message.advisorId userid=userId question=question answer=message.answer)}}
-            Continue in free chat...{{/link-to}}
+            Continue in chat...{{/link-to}}
         </div>
     </div>
 </li>

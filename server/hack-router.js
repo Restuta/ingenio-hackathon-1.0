@@ -3,6 +3,8 @@ var router = express.Router();
 var _ = require('lodash');
 var chalk = require('chalk');
 var util = require('util'); //node utils
+var request = require('request-promise');
+var moment = require('moment');
 
 module.exports = function Router(socketIo) {
     if (!socketIo) {
@@ -44,16 +46,6 @@ module.exports = function Router(socketIo) {
             });
         });
 
-        //_.each(events.advisor, function(event) {
-        //    socket.on(event.name, function(data) {
-        //        log.event(event.name, data);
-        //
-        //        if (event.broadcast === true) {
-        //            socket.broadcast.emit(event.name, data);
-        //        }
-        //    });
-        //});
-
         //for debugging
         socket.on('test', function(data) {
             log.event('test', data);
@@ -78,14 +70,19 @@ module.exports = function Router(socketIo) {
         socket.on('advisor-name-set', function(data) {
             log.event('advisor-name-set', data);
 
-            var advisor = _.find(advisorList, {assigned: false});
-            advisor.assigned = true;
-            advisor.advisorName = data.advisorName;
+            createRandomAdvisor(data.advisorName)
+                .then(function(advisor) {
+                    log.debug(advisor);
 
-            log.debug(advisor.advisorId);
-            socket.emit('advisor-assigned', {
-                advisorId: advisor.advisorId
-            });
+                    advisorList.push(advisor);
+                    advisor.assigned = true;
+
+                    log.debug(advisor.advisorId);
+
+                    socket.emit('advisor-assigned', {
+                        advisorId: advisor.advisorId
+                    });
+                });
         });
 
         socket.on('disconnect', function() {
@@ -131,6 +128,30 @@ var toJson = function(object) {
         return '';
     }
 };
+
+function createRandomAdvisor(name) {
+
+    var createAdvisor = function(user) {
+        return {
+            advisorId: Math.floor((Math.random() * 100000000000) + 1),
+            profileImageUrl: user.picture.large,
+            advisorName: name || (user.name.first + ' ' + user.name.last),
+            postedDate: moment().format('MMMM Do, h:mm:ss a'), //March 8th 2015
+            starRating: Math.floor((Math.random() * 5) + 1),
+            pricePerMinute: (Math.floor((Math.random() * 5) + 1) + 0.99).toFixed(2),
+            assigned: false
+        }
+    };
+
+    var createAdviosorPromise = request('http://api.randomuser.me/')
+        .then(function(body) {
+            var user = JSON.parse(body).results[0].user;
+            return user;
+        })
+        .then(createAdvisor);
+
+    return createAdviosorPromise;
+}
 
 //Sample advisors data
 var advisorList = [{
