@@ -72,7 +72,8 @@ export default Ember.ObjectController.extend({
   },
 
   _getMaskedString(originalString, maskingCharacter) {
-    return originalString.replace(/\w/g, maskingCharacter);
+    //return originalString.replace(/\w/g, maskingCharacter);
+    return originalString;
   }
 
 });
