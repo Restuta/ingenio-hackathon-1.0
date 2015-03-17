@@ -15,7 +15,7 @@ logger.setOptions({
 
 var router = require('./hack-router')(io);
 
-var port = 31337;
+var port = process.env.PORT || 31337;
 
 var corsSettings = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
