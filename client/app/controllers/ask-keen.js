@@ -48,7 +48,8 @@ export default Ember.ObjectController.extend({
 
     'advisor-pressed-key': function(data) {
 
-      var maskedAnswer = this._getMaskedString(data.value, '*');
+      //var maskedAnswer = this._getMaskedString(data.value, '*');
+      var maskedAnswer = data.value;
       console.log(data.value);
 
       if (!this.get('advisorsTyping').isAny('name', data.advisorName)) {
@@ -72,8 +73,7 @@ export default Ember.ObjectController.extend({
   },
 
   _getMaskedString(originalString, maskingCharacter) {
-    //return originalString.replace(/\w/g, maskingCharacter);
-    return originalString;
+    return originalString.replace(/\w/g, maskingCharacter);
   }
 
 });
