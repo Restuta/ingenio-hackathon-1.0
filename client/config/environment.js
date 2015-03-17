@@ -50,6 +50,11 @@ module.exports = function(environment) {
     ENV.EmberENV.socketServer = '10.0.0.5'; //Anton's laptop
   }
 
+  if (environment === 'heroku') {
+    ENV.EmberENV.port = 80;
+    ENV.EmberENV.socketServer = 'ask-keen-server.herokuapp.com'; //Anton's laptop
+  }
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
@@ -63,6 +68,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.EmberENV.port = 80;
+    ENV.EmberENV.socketServer = 'ask-keen-server.herokuapp.com'; //Anton's laptop
   }
 
   return ENV;
