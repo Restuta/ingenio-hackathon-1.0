@@ -1,17 +1,18 @@
 <div class="col-sm-12 ask-keen-content">
   {{#if isQuestionSubmitted}}
-      <h4>We promise you will get <span class="green">first</span> answer in less then a minute.</h4>
+      <h4 class="secondary">We promise you will get <span class="green">first</span> answer in less then a minute.</h4>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default consumer-question">
           <div class="panel-body">
               <h2>{{questionAsked}}</h2>
           </div>
       </div>
 
-
-        {{#each advisor in advisorsTyping}}
-            <div class="is-replying"><b><span class="advisor-name">{{advisor}}</span> is replying...</b></div>
-        {{/each}}
+    {{#each advisor in advisorsTyping}}
+        <div class="is-replying"><span class="replying-advisor-name">{{advisor.name}}</span> is replying...
+          <span class="advisor-answer-mask">{{advisor.answerMask}}</span>
+        </div>
+    {{/each}}
   {{else}}
       <h2>Ask <span class="hundreds-advisors">hundreds</span> Advisors just about anything!</h2>
 
@@ -19,7 +20,9 @@
         {{input-with-on-change class="form-control" type="text" maxlength="140" value=questionAsked
         placeholder="Type in your question..." onInputChange="onInputChange" startedTyping="startedTyping"}}
           <span class="input-group-btn">
-              <button class="btn btn-success" type="submit" {{action 'submitQuestion'}}>Ask</button>
+              <button {{bind-attr class=":btn :btn-success consumerStartedTyping:enabled:disabled"}}
+                      type="submit" {{action 'submitQuestion'}}>Ask
+              </button>
             </span>
       </div>
 
@@ -27,7 +30,7 @@
 
 
   {{#if anyAnswerPresent}}
-      <h3>Responses from our advisors:</h3>
+      <h3 class="secondary">Responses from our advisors:</h3>
       <br/>
       <ul class="media-list advisor-message-list">
         {{#each answer in answersFromAdvisors}}

@@ -32,6 +32,10 @@ $green: #18BC9C;
   height: 75px;
 }
 
+.advisor-answer-mask {
+  background-color: blanchedalmond;
+}
+
 .price-per-minute{
   font-weight: normal;
   font-family: monospace;
@@ -39,6 +43,10 @@ $green: #18BC9C;
 
 .user-message {
 
+}
+
+.see-that-you-are-typing {
+  font-size: 12px;
 }
 
 /*dash-board styles*/
@@ -55,6 +63,27 @@ $green: #18BC9C;
   border-color: #3a945b;
   color: #FFF;
 }
+
+.advisor-name {
+  text-transform: capitalize;
+}
+
+.consumer-question {
+  border-radius: 20px;
+  h2 {
+    margin-top: 10px;
+  }
+}
+
+.secondary {
+  opacity: 0.8;
+}
+
+.blurred {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
 
 .question {
   background-color: rgb(184, 232, 223);
@@ -84,8 +113,9 @@ $green: #18BC9C;
   bottom: 0;
 }
 
-.advisor-name {
+.replying-advisor-name {
   color: $green;
+  text-transform: capitalize;
 }
 
 .save-name {

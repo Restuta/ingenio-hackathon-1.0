@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   beforeModel: function(transition){
     console.log(transition.queryParams.test);
-    this.set('queryParams',transition.queryParams);
+    this.set('queryParams', transition.queryParams);
   },
   setupController: function(controller, model) {
     console.log(this.get('queryParams'));

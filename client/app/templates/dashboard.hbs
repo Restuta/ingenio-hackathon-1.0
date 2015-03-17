@@ -5,7 +5,10 @@
   {{#just-notify source=whatsYourNameNotification class="position-center"}}
       <div class="text-center">
         {{focused-input class="form-control input-lg" value=advisorName placeholder="Your name?" }}
-          <button {{bind-attr class=":btn :btn-primary  :save-name"}} {{action "saveAdvisorName"}}>Save</button>
+          <button {{bind-attr class=":btn :btn-primary  :save-name advisorName:enabled:disabled"}} {{action "saveAdvisorName"}}>
+              Save
+          </button>
+          <button {{bind-attr class=":btn :btn-primary  :save-name"}} {{action "saveAdvisorName"}}>Get Random</button>
       </div>
   {{/just-notify}}
 
@@ -16,23 +19,38 @@
           </button>
       </div>
   {{/just-notify}}
-</div> 
+</div>
 
 
 {{#just-notify source=questionFormNotification class="position-center" close="questionFormClosed"}}
-    <div class="fourm-group">
-
+    <div class="form-group">
         <div class="question">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             <span {{bind-attr class=":glyphicon :glyphicon-ok :green canReply:visible:hidden"}} aria-hidden="true"></span>
           {{questionText}}
         </div>
       {{textarea rows="2" cols="32" class="form-control"  value=answer}}
+      {{#if answer}}
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          <span class="see-that-you-are-typing">Right now they see that you are typing</span>
+      {{/if}}
 
-        <div class="btn-reply">
-            <span class="user-status">{{userStillTypingText}}</span>
-            <button {{bind-attr class=":btn :btn-primary form-control canReply:enabled:disabled"}} {{action "sendReply"}}>Reply
-            </button>
-        </div>
+
+      {{#if canReply}}
+          <div class="btn-reply">
+              <button {{bind-attr class=":btn :btn-primary :form-control"}} {{action "sendReply"}}>
+                  Reply
+              </button>
+          </div>
+      {{else}}
+          <div class="btn-reply">
+              <button {{bind-attr class=":btn :btn-primary :form-control :disabled"}} {{action "sendReply"}}>
+                  They are still typing... <span {{bind-attr class=":glyphicon :glyphicon-hourglass"}} aria-hidden="true"></span>
+              </button>
+          </div>
+      {{/if}}
+
+
     </div>
 {{/just-notify}}
 
