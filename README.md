@@ -1,3 +1,9 @@
+#Heroku
+* deploy _server_  `git subtree push --prefix server heroku master`
+    - will be availabel at httphs://ask-keen-server.herokuapp.com/
+* deploy _client_ `git subtree push --prefix client heroku-web master`
+    - will be availabel at httphs://ask-keen.herokuapp.com/
+
 # Hackathon
 
 This README outlines the details of collaborating on this Ember application.
