@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     console.log(transition.queryParams.test);
     this.set('queryParams', transition.queryParams);
   },
-  setupController: function(controller, model) {
+  setupController: function(controller) {
     console.log(this.get('queryParams'));
     controller.set('model', {
       advisorId: 101,

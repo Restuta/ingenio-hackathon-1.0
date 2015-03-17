@@ -46,6 +46,10 @@ module.exports = function(environment) {
     ENV.EmberENV.socketServer = '10.2.1.62'; //Anton's laptop
   }
 
+  if (environment === 'home') {
+    ENV.EmberENV.socketServer = '10.0.0.5'; //Anton's laptop
+  }
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
