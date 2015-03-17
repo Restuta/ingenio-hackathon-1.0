@@ -89,7 +89,7 @@ module.exports = function Router(socketIo) {
         var eventName = req.params.eventName;
 
         io.emit(eventName, ';D');
-        res.send();
+        res.send(';D');
     });
 
     return router;
