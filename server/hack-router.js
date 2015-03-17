@@ -5,6 +5,7 @@ var chalk = require('chalk');
 var util = require('util'); //node utils
 var request = require('request-promise');
 var moment = require('moment');
+var coolFace = require('cool-ascii-faces');
 
 var advisorList = [];
 
@@ -17,7 +18,7 @@ module.exports = function Router(socketIo) {
     var totalClients = 0;
 
     router.get('/', function(req, res) {
-        res.send('hello hacking world');
+        res.send('hello hacking world ' + coolFace());
     });
 
     io.on('connection', function(socket) {
