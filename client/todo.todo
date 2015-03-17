@@ -3,7 +3,8 @@ Features
     - add fun boring-corporate version http://www.avatarpro.biz/avatar?s=256
   -- ask for email
     - show "is typing" at the email screen
-
+  -- show winning answer to advisors that lost (were not picked by a user to chat):
+    this way advisors can learn what makes a good answer good, we can hide advisor info if that is an issue.
 
 
 Day #1
