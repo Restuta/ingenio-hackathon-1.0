@@ -1,3 +1,8 @@
+# How to run
+To ask: http://ask-keen.herokuapp.com/ask-keen
+
+To answer: http://ask-keen.herokuapp.com/dashboard (short url to open from phone http://j.mp/ask-keen)
+
 #Heroku
 * deploy _server_  `git subtree push --prefix server heroku master`
     - will be availabel at httphs://ask-keen-server.herokuapp.com/
