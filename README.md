@@ -1,4 +1,4 @@
-# How to run
+# Try it out
 To ask: http://ask-keen.herokuapp.com/ask-keen
 
 To answer: http://ask-keen.herokuapp.com/dashboard (short url to open from phone http://j.mp/ask-keen)
